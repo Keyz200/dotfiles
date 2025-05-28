@@ -1,0 +1,223 @@
+* {
+	all: unset;
+    font-family: "JetBrainsMono";
+    font-weight: 700;
+    margin-top: -2px;
+}
+
+window#waybar {
+    background-color: rgba(20, 20, 20, 0.7);
+    border-radius: 18px;
+}
+
+tooltip {
+    background: #1c1c1c;
+    opacity: 0.7;
+    border-radius: 10px;
+    border: 1px solid #c1bfbf;
+}
+
+tooltip label {
+    padding: 8px;
+}
+
+#image.slides {
+	margin: 8px 0px 4px 5px;
+	padding: 2px 3px 0px 5px;
+}
+
+#workspaces {
+	margin: 8px 0px 4px 0px;
+	padding: 2px 5px 0px 5px;
+}
+
+#workspaces button {
+	font-size: 15px;
+    padding: 4px 11px 0px 11px;
+    background-color: transparent;
+    color: #afafaf;
+}
+
+#workspaces button.active {
+}
+
+#workspaces button.urgent {
+    color: #a6e3a1;
+}
+
+#workspaces button:hover {
+	border-radius: 0px;
+    opacity: 0.9;
+}
+
+#pulseaudio {
+    padding: 0px 10px 0px 10px;
+}
+
+#pulseaudio.muted {
+    padding: 0px 10px 0px 10px;
+}
+
+#pulseaudio:hover {
+    opacity: 0.9;
+}
+
+#custom-musicname {
+    padding: 0px 10px 1px 10px;
+}
+
+#custom-musicname:hover {
+	opacity: 0.9;
+}
+
+#custom-cputext {
+	padding-left: 10px;
+	margin: 8px 0px 4px 1px;
+	background: linear-gradient(to right, rgba(32, 32, 32, 1), rgba(32, 32, 32, 0.6));
+}
+
+#cpu {
+	padding: 0px 5px 0px 5px;
+	min-width: 38px;
+	margin: 8px -4px 4px 0px;
+	background: linear-gradient(to right, rgba(32, 32, 32, 0.61), rgba(32, 32, 32, 0.4));
+}
+
+#custom-temperature {
+ 	padding: 0px 10px 0px 8px;
+	margin: 8px 0px 4px 0px;
+	background: linear-gradient(to right, rgba(32, 32, 32, 0.41), rgba(32, 32, 32, 0));
+}
+
+#image.dashboard {
+	padding: 6px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+#custom-gputext {
+	margin: 8px 0px 4px 0px;
+	border-radius: 0px 0px 0px 0px;
+	padding-left: 8px;
+	background: linear-gradient(to left, rgba(32, 32, 32, 0.41), rgba(32, 32, 32, 0));
+}
+
+#custom-gpuusage {
+	padding: 0px 5px 0px 5px;
+	min-width: 38px;
+	margin: 8px 0px 4px 0px;
+	background: linear-gradient(to left, rgba(32, 32, 32, 0.71), rgba(32, 32, 32, 0.4));
+}
+
+#custom-gputemp {
+	padding: 0px 10px 0px 5px;
+	margin: 8px 0px 4px 0px;
+	background: linear-gradient(to left, rgba(32, 32, 32, 1), rgba(32, 32, 32, 0.7));
+}
+
+#network {
+	margin: 8px 0px 4px 0px;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#custom-ping {
+	padding: 0px 10px 0px 0px;
+}
+
+#tray {
+}
+
+#tray > .active {
+}
+
+#tray menu {
+	font-size: 15px;
+	color: #ffffff;
+	background-color: rgba(30, 30, 30, 1);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+#tray menu menuitem {
+	padding: 14px 14px;
+}
+
+#tray menu menuitem:hover {
+	background-color: rgba(50, 50, 50, 0.6);
+	border-radius: 14px;
+}
+
+#tray menu separator {
+}
+
+#custom-weather {
+}
+
+#custom-weather:hover {
+	opacity: 0.9;
+}
+
+#clock {
+}
+
+#clock:hover {
+	opacity: 0.9;
+}
+
+#custom-notificationcenter {
+	opacity: 0.9;
+}
+
+#custom-power {
+	font-size: 18px;
+}
+
+#custom-power:hover {
+	opacity: 0.9;
+}
+
+#tooltip label, #workspaces, #pulseaudio, #custom-musicname, #custom-cputext, #cpu, #custom-temperature, #custom-gputext, #custom-gpuusage, #custom-gputemp, #custom-ping, #tray, #custom-weather, #clock {
+	font-size: 14px;
+}
+
+##tooltip label, #workspaces, #workspaces button.active, #pulseaudio, #custom-musicname, #custom-cputext, #cpu, #custom-temperature, #custom-gputext, #custom-gpuusage, #custom-gputemp, #custom-ping, #tray, #custom-weather, #clock {
+	color: #ffffff;
+}
+
+#image.slides, #workspaces, #clock, #custom-notificationcenter,  #custom-power, #pulseaudio:hover, #custom-musicname:hover, #custom-weather:hover {
+	background-color: rgba(32, 32, 32, 1);
+}
+
+#clock:hover, #custom-notificationcenter:hover,  #custom-power:hover {
+	background-color: rgba(70, 70, 70, 0.7);
+}
+
+#pulseaudio, #pulseaudio.muted, #custom-musicname, #image-dashboard, #network, #custom-ping, #tray, #custom-weather {
+	background-color: transparent;
+}
+
+#pulseaudio, #pulseaudio.muted, #custom-musicname, #custom-weather, #clock, #custom-notificationcenter,  #custom-power {
+    border-radius: 14px;
+}
+
+#image.slides, #custom-cputext, #network {
+	border-radius: 14px 0px 0px 14px;
+}
+
+#workspaces, #custom-gputemp, #custom-ping {
+	border-radius: 0px 14px 14px 0px;
+}
+
+#images-slides, #pulseaudio, #pulseaudio.muted, #custom-musicname {
+	margin: 8px 0px 4px 5px;
+}
+
+#custom-ping, #tray, #custom-weather, #clock, #custom-notificationcenter,  #custom-power {
+	margin: 8px 5px 4px 0px;
+}
+
+#network, #tray, #custom-weather, #clock, #custom-notificationcenter,  #custom-power {
+	padding: 0px 10px 0px 10px;
+}

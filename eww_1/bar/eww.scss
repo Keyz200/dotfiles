@@ -1,0 +1,414 @@
+$pad: 5px;
+$radius: 7px;
+$marg: 2px;
+$weight: 600;
+$hoverbg: #1f1f1f;
+$hoveropacity: 0.86;
+$textcolor: #D86305;
+$hovertextcolor: #ececec;
+$radius: 8px;
+$weight: 500;
+
+* {
+	all: unset
+}
+
+.menuh {
+	background: linear-gradient(to right, #000000, #181818);
+	padding: 10px 10px 10px 7px;
+	border-radius: 0px $radius $radius 0px;
+	border: 0px solid #D86305;
+	font-family: "SourceSans3VF"
+}
+
+.sidebox {
+	background: transparent;
+	color: $textcolor;
+	font-size: 18px;
+	border: 1px solid #D86305;
+	border-radius: $radius;
+	padding: 5px 5px 5px 5px;
+}
+
+.sidebuttonbox {
+	border-radius: $radius;
+	&:hover {
+		background: #b75301;
+		color: #ececec;
+	}
+}
+
+.buttonicon, .nightlightoff, .nightlighton, .nightlightboxon, .nightlightboxoff {
+	padding: 6px 10px 6px 10px;
+	border-radius: $radius;
+}
+
+.sidebarseparator {
+	margin: -2px 0px -9px 0px
+}
+
+.nightlighton {
+}
+
+.nightlightboxon {
+	color: $textcolor;
+	background: #ececec;
+	&:hover {
+		background: #b75301;
+		color: #ececec;
+	}
+}
+.menu {
+	padding: 0px 0px 0px 18px;
+	font-size: 16px;
+	font-weight: $weight;
+	color: $textcolor;
+}
+
+.dayanduserbox {
+	font-weight: $weight;	
+}
+
+.userhostbox {
+	border-radius: $radius;
+	padding: 10px;
+	margin-right: 61px;
+	margin-left: -10px;
+}
+
+.usericon {
+	min-height: 20px;
+	min-width: 47px;
+	background-size: contain;
+	border-radius:50%
+}
+
+.userlabel {
+	color: #ececec;
+	background: #b75301;
+	border-radius: $radius;
+}
+
+.dayandtimebox {
+	background: #181818;
+	padding: 10px;
+	border: 1px solid #D86305;
+	border-radius: $radius
+}
+
+.tabbuttonboxselected {
+	padding: 5px 0px 2px 0px;
+	background: #b75301;
+	color: #ececec;
+	border-radius: $radius
+}
+
+.tabbuttonbox {
+	padding: 5px 0px 2px 0px;
+	&:hover {
+		background: #ececec;
+		border-radius: $radius
+	}
+}
+
+.tabinformationscroll {
+	background: #181818;
+	border: 1px solid #D86305;
+	border-radius: $radius
+}
+
+.scrollbox {
+	margin: 10px 20px 10px 20px;
+}
+
+.hardwarename {
+	font-size: 17px;
+	border-radius: $radius;
+	background: #b75301;
+	color: #ececec;
+	margin: 0px 84px 0px 84px;
+}
+
+.detailedinfo {
+	margin-bottom: -7px;
+	font-weight: 600;
+}
+
+.usageicon, .temperatureicon, .clockspeedicon, .wattsicon, .memoryicon {
+	font-size: 20px;
+}
+
+.hardwareinfo scale trough {
+	box-shadow: 1px 1px 3px 1px #06060b;
+	background: #000000;
+	min-height: 8px;
+	min-width: 238px;
+	border-radius: $radius
+}
+
+.hardwareinfo scale trough highlight {
+	background: linear-gradient(to right, #1f1f1f, #D86305);
+	border-radius: $radius
+}
+
+.hardwareinfo scale slider {
+	background: none;
+	min-width: 0;
+	min-height: 0;
+}
+
+.weathernow {
+	font-size: 25px;
+	color: #ececec;
+	background: #b75301;
+	border-radius: $radius;
+	margin: 0px 74px 0px 74px;
+}
+
+.forecastlabel {
+	margin: 8px;
+	font-size: 18px;
+	font-weight: $weight;
+}
+
+.weathertime {
+	font-size: 18px;
+}
+
+.forecastweather {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.notificationbox {
+	background: linear-gradient(to right, #D86305, #1f1f1f);
+	border-radius: $radius;
+	color:#ececec;
+	padding: 7px 5px 7px 0px;
+}
+
+.appicon {
+	background-color: transparent;
+	background-size: cover;
+	min-height: 30px;
+	min-width: 30px;
+	border-radius: 50%;
+	margin: 7px 5px 0px 5px;
+}
+
+.sender {
+	font-size: 17px;
+	font-weight: $weight;
+}
+
+.musicplayerbox {
+	background: #181818;
+	border: 1px solid #D86305;
+	border-radius: $radius;
+	padding: 10px;
+}
+
+.mediabutton {
+	font-size: 18px;
+	padding: 6px 13px 6px 13px;
+	color: $textcolor;
+	border-radius: $radius;
+
+	&:hover {
+		background: #ececec;
+		color: $textcolor;
+	}
+}
+
+.musicprogress {
+	margin: 0px 20px 0px 20px;
+}
+
+.musicprogress scale trough {
+	box-shadow: 1px 1px 3px 1px #06060b;
+	background: #000000;
+	border-radius: $radius;
+	min-height: 4px;
+	min-width: 150px;
+}
+
+.musicprogress scale trough highlight {
+	background: linear-gradient(to left, #D86305, #1f1f1f);
+	border-radius: $radius;
+}
+
+.musicprogress scale slider {
+}
+
+.sword {
+	min-height: 160px;
+	min-width: 110px;
+	background-size: contain;
+}
+
+.barbox {
+	margin-top: 700px;
+	font-size: 16px;
+	font-family: "SourceSans3VF"
+}
+
+.extendmenu {
+	&:hover {
+		background: $hovertextcolor;
+		opacity: $hoveropacity;
+		border-radius: $radius;
+	}
+}
+
+.menuopener {
+	padding: $pad 4px $pad $pad;
+	border-radius: $radius;
+	margin: $marg 0px $marg 0px;
+	font-size: 20px;
+	margin-left: -1px;
+	color: $textcolor;
+}
+
+.micbox {
+	&:hover {
+		opacity: $hoveropacity;
+		border-radius: $radius;
+		background: $hovertextcolor;
+	}
+}
+
+.micicon {
+	padding: $pad 4px $pad $pad;
+	border-radius: $radius;
+	margin: $marg 0px $marg -1px;
+	margin-left: -1px;
+	color: $textcolor;
+}
+
+.volumebox {
+	&:hover {
+		opacity: $hoveropacity;
+		background: $hovertextcolor;
+		border-radius: $radius;
+	}
+}
+
+.volumeicon {
+	padding: $pad 3px $pad $pad;
+	border-radius: $radius;
+	margin: $marg 0px $marg -1px;
+	font-size: 16px;
+	color: $textcolor;
+}
+
+.netbox {
+	&:hover {
+		opacity: $hoveropacity;
+		background: $hovertextcolor;
+		border-radius: $radius;
+	}
+}
+
+.neticon {
+	font-size: 17px;
+	padding: $pad 4px $pad $pad;
+	border-radius: $radius;
+	margin: $marg 0px $marg -2px;
+	color: $textcolor;
+}
+
+.clockbox {
+	border-radius: $radius;
+	padding: $pad 4px $pad $pad;
+	margin-left: -1px;
+	color: $textcolor;
+	&:hover {
+		background: $hovertextcolor;
+	}
+}
+
+.clockh {
+	font-size: 18px;
+	font-weight: 600;
+}
+.clockm {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.powerbox {
+	&:hover {
+		opacity: $hoveropacity;
+		background: $hovertextcolor;
+		border-radius: $radius;
+	}
+}
+
+.powerbutton {
+	padding: $pad;
+	margin: $marg 0px $marg 1px;
+	border-radius: $radius;
+	font-size: 15px;
+	color: $textcolor;
+}
+
+tooltip.background {
+    background-color: #000000;
+    font-size: 16px;
+    border-radius: $radius;
+    color: $textcolor;
+}
+
+tooltip label {
+    margin: 4px;
+}
+
+.calendarboxout {
+	background: linear-gradient(to right, #000000, #181818);
+	padding: 10px;
+	border-radius: $radius;
+}
+
+.calendarbox {
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+  border-radius: $radius;
+  font-family: "JetBrainsMono";
+  border: 1px solid #D86305;
+}
+
+calendar {
+	padding: 4px;
+	color: #ececec;
+}
+
+calendar:selected {
+	color: $textcolor;
+	font-weight: $weight;
+}
+
+calendar.header {
+	font-weight: $weight;
+	color: $textcolor;
+	font-weight: bold;
+}
+
+calendar.button {
+	color: #ececec;
+	border-radius: $radius;
+	&:hover {
+	  	background-color: $textcolor;
+	  	color: #ececec;
+	}
+}
+
+calendar.highlight {
+	color: $textcolor;
+	font-weight: bold;
+}
+
+calendar:indeterminate {
+	color: #4f4f4f;
+}
+
+

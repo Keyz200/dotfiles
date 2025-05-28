@@ -1,0 +1,84 @@
+$backgroundcolor: rgba(0, 0, 0, 1);
+$borderradius: 1px;
+* {
+	all: unset;
+	font-family: "SourceSans3VF";
+	font-size: 16px;
+	color: #000000;
+}
+
+.eventbox {
+	min-height: 140px;
+	min-width: 377px;
+	background-size: contain;
+	margin-top: 0px;
+	&:hover {
+		background: $backgroundcolor;
+		border-radius: 0px;
+		border: 0px solid grey;
+	}
+}
+
+.win {
+	background: transparent;
+	border-radius: $borderradius;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 34px;
+	border: 0px solid #2d2d2d;
+}
+
+.appiconbox {
+	margin-bottom: 0px;
+}
+
+.appicon {
+	background-color: transparent;
+	background-size: cover;
+	min-height: 40px;
+	min-width: 40px;
+	border-radius: 50%;
+	margin: 0px 0px 0px 0px;
+}
+
+.infobox {
+	margin-right: -12px;
+}
+
+.sender {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.content {
+	font-weight: 500;
+}
+
+.notif-eventbox {
+  background: transparent;
+  border-radius: $borderradius;
+  margin: 10px;
+  border: 0px solid #111015; 
+}
+
+.notificationicon {
+	margin: 0px 0px 0px 16px;
+	font-size: 24px;
+}
+.notificationlabel {
+	margin: 10px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.notif-scroll {
+	background: transparent;
+	border-radius: $borderradius;
+    padding: 9px 0px 9px 9px;
+    margin: 1px;
+}
+
+.notif-container {
+
+  border-radius: 16px;
+}
+

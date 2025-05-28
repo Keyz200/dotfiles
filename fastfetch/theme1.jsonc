@@ -1,0 +1,80 @@
+// Inspired by Catnap
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "/home/keyz/images/steampfp/sbgav12_00000.png",
+        "type": "kitty",
+		"width": 22,
+        "height": 9,
+        "padding": {
+            "top": 1
+        }
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+    	{
+            "key":"                  ",
+            "type": "custom"
+    	},
+        {
+            "key":"{#38;2;87;134;154}╭───────────╮",
+            "type": "custom"
+        },
+        {
+            "key": "{#38;2;102;142;154}│  user    │",
+            "type": "title",
+            "format": "{#38;2;102;142;154}{user-name}"
+        },
+        {
+            "key": "{#38;2;115;147;154}│ 󰇅 hname   │",
+            "type": "title",
+            "format": "{#38;2;115;147;154}{host-name}"
+        },
+        {
+            "key": "{#38;2;128;152;155}│ 󰅐 uptime  │",
+            "type": "uptime",
+            "format": "{#38;2;128;152;155}{hours} hours, {minutes} mins"
+        },
+        {
+            "key": "{#38;2;141;157;155}│ {icon} distro  │",
+            "type": "os",
+            "format": "{#38;2;141;157;155}{name}"
+        },
+        {
+            "key": "{#38;2;154;162;156}│  kernel  │",
+            "type": "kernel",
+            "format": "{#38;2;154;162;156}{sysname} {release}"
+        },
+        {
+            "key": "{#38;2;167;167;157}│  term    │ ghostty",
+            "type": "custom"
+        },
+        {
+            "key": "{#38;2;180;172;157}│  shell   │",
+            "type": "shell",
+            "format": "{#38;2;180;172;157}{process-name}"
+        },
+        {
+            "key": "{#38;2;193;177;158}│ 󰍛 cpu     │",
+            "type": "cpu",
+            "showPeCoreCount": true,
+            "format": "{#38;2;193;177;158}{name}"
+        },
+        {
+            "key": "{#38;2;206;182;159}│ 󰢩 gpu     │",
+            "type": "gpu",
+            "format": "{#38;2;206;182;159}{name}"
+        },
+        {
+            "key": "{#38;2;219;187;159}│  memory  │",
+            "type": "memory",
+            "format": "{#38;2;219;187;159}{used}/{total} DDR4 3200Mhz CL16"
+        },
+        {
+            "key": "{#38;2;232;192;160}╰───────────╯",
+            "type": "custom"
+        },
+    ]
+}

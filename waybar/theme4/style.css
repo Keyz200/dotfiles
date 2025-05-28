@@ -1,0 +1,82 @@
+* {
+	all: unset;
+    font-family: "JetBrainsMono";
+    font-weight: 700;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+/* border */
+#tray menu {
+    border: 1px solid #D86305;
+}
+
+/* font size | color | padding/spacing */
+#tray, 
+#workspaces,
+#workspaces button {
+	font-size: 14px;
+	color: #ececec;
+	padding: 3px 5px 3px 5px;
+}
+
+/* far left */
+#tray {
+	margin-bottom: 70px;
+}
+
+/* workspaces */
+#workspaces {
+	margin-top: 90px;
+}
+#workspaces button {
+	font-size: 15px;
+    color: #D86305;
+}
+
+#workspaces button.active {
+	color: #eaa08a;
+}
+
+#workspaces button.urgent {
+    color: #a6e3a1;
+}
+
+/* network */
+#network.disconnected {
+    color: #f53c3c;
+}
+
+
+/* *********************************************** */
+
+#workspaces button:hover {
+	opacity: 0.6;
+}
+
+/* tray  menu */
+#tray > .active {
+	color: #ff0000;
+}
+
+#tray menu {
+	font-size: 14px;
+	color: #D86305;
+	background: radial-gradient(#1f1f1f, #000000);
+	padding: 10px;
+}
+
+#tray menu menuitem {
+	padding: 10px 10px;
+}
+
+#tray menu menuitem:hover {
+	background-color: #1f1f1f;
+}
+
+#tray menu separator {
+	background: #464646;
+	margin: 0px 10px 0px 10px;
+}

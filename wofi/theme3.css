@@ -1,0 +1,55 @@
+* {
+	font-family: "SourceSans3VF";
+	font-size: 16px;
+}
+window {
+	margin: 0px;
+	padding: 0px;
+	background-color: radial-gradient(#344E67, #000000);
+}
+
+#input {
+	margin: 5px;
+	border: 1px solid #2d2d2d;
+	border-radius: 10px;
+	background: #0f0f0f;
+}
+
+#input:focus {
+    box-shadow: inset 0 0 0 2px #344E67;
+}
+
+#inner-box {
+	margin: 5px;
+	background: #0f0f0f;
+}
+
+#outer-box {
+	background: radial-gradient(#344E67, #000000);
+	opacity: 0.8;
+}
+
+#scroll {
+	margin: 5px;
+	border: 2px solid #2d2d2d;
+	border-radius: 10px;
+	padding-bottom: 5px;
+	background: #0f0f0f;
+}
+
+#text {
+	margin: 5px;
+	background-color: transparent;
+} 
+
+#entry:selected {
+    background: radial-gradient(#344E67, #000000);
+    border-radius: 8px;
+    width: 100%;
+    border: 2px solid #344E67;
+} 
+
+#text:selected {
+	background-color: transparent;
+	padding: 0px 10px 0px 10px;
+} 

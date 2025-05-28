@@ -1,0 +1,16 @@
+width=25%
+height=300
+prompt=
+location=top_left
+x=
+y=
+normal_window=true
+allow_images=true
+term=ghostty
+hide_scroll=false
+matching=fuzzy
+insensitive=true
+lines=7
+sort_order=alphabetical
+gtk_dark=true
+image_size=18

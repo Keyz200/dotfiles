@@ -1,0 +1,145 @@
+(deflisten app1 :initial ""
+    `tail -Fq /tmp/eww/notifications/.app1`)
+
+(deflisten app2 :initial ""
+    `tail -Fq /tmp/eww/notifications/.app4`)
+
+(deflisten app3 :initial ""
+    `tail -Fq /tmp/eww/notifications/.app7`)
+
+(deflisten app4 :initial ""
+    `tail -Fq /tmp/eww/notifications/.app10`)
+
+(deflisten app5 :initial ""
+    `tail -Fq /tmp/eww/notifications/.app13`)
+
+(deflisten sender1 :initial ""
+    `tail -Fq /tmp/eww/notifications/.sender2`)
+
+(deflisten sender2 :initial ""
+    `tail -Fq /tmp/eww/notifications/.sender5`)
+
+(deflisten sender3 :initial ""
+    `tail -Fq /tmp/eww/notifications/.sender8`)
+
+(deflisten sender4 :initial ""
+    `tail -Fq /tmp/eww/notifications/.sender11`)
+
+(deflisten sender5 :initial ""
+    `tail -Fq /tmp/eww/notifications/.sender14`)
+
+(deflisten content1 :initial ""
+    `tail -Fq /tmp/eww/notifications/.content3`)
+
+(deflisten content2 :initial ""
+    `tail -Fq /tmp/eww/notifications/.content6`)
+
+(deflisten content3 :initial ""
+    `tail -Fq /tmp/eww/notifications/.content9`)
+
+(deflisten content4 :initial ""
+    `tail -Fq /tmp/eww/notifications/.content12`)
+
+(deflisten content5 :initial ""
+    `tail -Fq /tmp/eww/notifications/.content15`)
+
+(deflisten icon1 :initial ""
+	`tail -Fq /tmp/eww/notifications/.icon1`)
+
+(deflisten icon2 :initial ""
+	`tail -Fq /tmp/eww/notifications/.icon4`)
+
+(deflisten icon3 :initial ""
+	`tail -Fq /tmp/eww/notifications/.icon7`)
+
+(deflisten icon4 :initial ""
+	`tail -Fq /tmp/eww/notifications/.icon10`)
+
+(deflisten icon5 :initial ""
+	`tail -Fq /tmp/eww/notifications/.icon13`)
+
+(defwidget notification1-widget []
+    (eventbox :class "eventbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/notifications/buttons.sh 1"
+        (box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 13 :valign "center"
+          	(box :class "appiconbox" :orientation "v" :space-evenly false
+          		(box :class "appicon" :halign "center" :style "background-image: url('${icon1}');"))
+          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 3
+          		(label :class "sender" :limit-width 19 :width 240 :xalign 0.4 :text "${sender1}")
+          		(label :class "content" :limit-width 26 :width 240 :xalign 0.4 :text "${content1}")))))
+
+(defwidget notification2-widget []
+    (eventbox :class "eventbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/notifications/buttons.sh 2"
+        (box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 13 :valign "center"
+          	(box :class "appiconbox" :orientation "v" :space-evenly false
+          		(box :class "appicon" :halign "center" :style "background-image: url('${icon2}');"))
+          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 3
+          		(label :class "sender" :limit-width 19 :width 240 :xalign 0.4 :text "${sender2}")
+          		(label :class "content" :limit-width 26 :width 240 :xalign 0.4 :text "${content2}")))))
+
+(defwidget notification3-widget []
+    (eventbox :class "eventbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/notifications/buttons.sh 3"
+        (box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 13 :valign "center"
+          	(box :class "appiconbox" :orientation "v" :space-evenly false
+          		(box :class "appicon" :halign "center" :style "background-image: url('${icon3}');"))
+          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 3
+          		(label :class "sender" :limit-width 19 :width 240 :xalign 0.4 :text "${sender3}")
+          		(label :class "content" :limit-width 26 :width 240 :xalign 0.4 :text "${content3}")))))
+
+(defwidget notification4-widget []
+    (eventbox :class "eventbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/notifications/buttons.sh 4"
+        (box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 13 :valign "center"
+          	(box :class "appiconbox" :orientation "v" :space-evenly false
+          		(box :class "appicon" :halign "center" :style "background-image: url('${icon4}');"))
+          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 3
+          		(label :class "sender" :limit-width 19 :width 240 :xalign 0.4 :text "${sender4}")
+          		(label :class "content" :limit-width 26 :width 240 :xalign 0.4 :text "${content4}")))))
+
+(defwidget notification5-widget []
+    (eventbox :class "eventbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/notifications/buttons.sh 5"
+        (box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 13 :valign "center"
+          	(box :class "appiconbox" :orientation "v" :space-evenly false
+          		(box :class "appicon" :halign "center" :style "background-image: url('${icon5}');"))
+          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 3
+          		(label :class "sender" :limit-width 19 :width 240 :xalign 0.4 :text "${sender5}")
+          		(label :class "content" :limit-width 26 :width 240 :xalign 0.4 :text "${content5}")))))
+
+(defwidget notif-center-widget []
+  (eventbox :onhoverlost "eww -c $HOME/.config/eww_1/notifications/ close notif-center"
+            :class "notif-eventbox"
+            :space-evenly false
+    (box :class "notif-center-box" :orientation "v" :spacing 0 :vexpand false :hexpand false :space-evenly false
+      (box :space-evenly false :spacing 68
+        (label :class "notificationicon" :text "")
+        (label :class "notificationlabel" :text "Notifications "))
+      (scroll :vexpand true :hexpand true :class "notif-scroll"
+        (box :orientation "v" :spacing 8 :class "notif-container"
+          (notification1-widget)
+          (notification2-widget)
+          (notification3-widget)
+          (notification4-widget)
+          (notification5-widget))))))
+
+(defwindow notification1 :stacking "overlay" :focusable "none" :monitor 1
+		:geometry (geometry :x 1557 :y 13 :width "350px" :height "10px")
+					(notification1-widget))
+
+(defwindow notification2 :stacking "overlay" :focusable "none" :monitor 1
+		:geometry (geometry :x 1557 :y 96 :width "350px" :height "10px")
+					(notification2-widget))
+
+(defwindow notification3 :stacking "overlay" :focusable "none" :monitor 1
+		:geometry (geometry :x 1557 :y 179 :width "350px" :height "10px")
+					(notification3-widget))
+
+(defwindow notification4 :stacking "overlay" :focusable "none" :monitor 1
+		:geometry (geometry :x 1557 :y 262 :width "350px" :height "10px")
+					(notification4-widget))
+
+(defwindow notification5 :stacking "overlay" :focusable "none" :monitor 1
+	    :geometry (geometry :x 1557 :y 345 :width "350px" :height "10px")
+				    (notification5-widget))
+
+(defwindow notif-center :stacking "overlay" :focusable false :monitor 1
+        :geometry (geometry :x 1543 :y 13 :width "364px" :height "467px")
+                    (notif-center-widget))
+

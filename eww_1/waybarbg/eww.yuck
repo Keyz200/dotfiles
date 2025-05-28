@@ -1,0 +1,24 @@
+(defvar leftimage "/home/keyz/images/ewwimages/cloudbustersword1.png")
+(defvar rightimage "/home/keyz/images/ewwimages/cloudbustersword.png")
+
+(defwidget busterswordleft-widget []
+	(box :class "busterbox" :style "background-image: url('${leftimage}');"))
+
+(defwidget busterswordright-widget []
+	(box :class "busterbox" :style "background-image: url('${rightimage}');"))
+
+(defwindow busterswordleft :stacking "bg" :focusable "false" :monitor 1
+	:geometry (geometry :x -106 :y -333 :width 0 :height 0)
+		(busterswordleft-widget))
+
+(defwindow busterswordright :stacking "bg" :focusable "false" :monitor 1
+	:geometry (geometry :x 1472 :y -333 :width 0 :height 0)
+		(busterswordright-widget))
+
+(defwindow busterswordleft2 :stacking "bg" :focusable "false" :monitor 0
+	:geometry (geometry :x -106 :y -333 :width 0 :height 0)
+		(busterswordleft-widget))
+
+(defwindow busterswordright2 :stacking "bg" :focusable "false" :monitor 0
+	:geometry (geometry :x 1472 :y -333 :width 0 :height 0)
+		(busterswordright-widget))

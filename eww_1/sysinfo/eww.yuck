@@ -1,0 +1,250 @@
+(defpoll disk0temp :interval "3s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh temp0`)
+
+(defpoll disk1temp :interval "3s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh temp1`)
+
+(defpoll disk0usage :interval "5s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage0 | awk '{printf "%s", $1}'`)
+
+(defpoll disk1usage :interval "5s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage1`)
+
+(defpoll disk0name :interval "24h"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh name0`)
+
+(defpoll disk1name :interval "24h"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh name1`)
+
+(defpoll disk0read :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh ioread`)
+
+(defpoll disk0write :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh iowrite`)
+
+(defpoll cputemp :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh temp`)
+
+(defpoll cpuwatts :interval "2s"
+	:initial "00"
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh watts`)
+
+(defpoll cpuload :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh load`)
+
+(defpoll cpuclock :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh clock`)
+
+(defpoll cpuname :interval "24h"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh name`)
+
+(defpoll gputemp :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh temp`)
+
+(defpoll gpuload :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh load`)
+
+(defpoll gpuusedmem :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh usedmem | awk '{printf "%.1f", $1/1000}'`)
+
+(defpoll gputotalmem :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh totalmem | awk '{printf "%.0f", $1/1000}'`)
+
+(defpoll gpuwatts :interval "2s"
+	:initial ""
+	:run-while visible-state
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh prwdraw`)
+
+(defpoll gpucurrentclock :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh currentclock`)
+
+(defpoll gpumaxclock :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh maxclock`)
+
+(defpoll gpucurrentmemclock :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh currentmemclock`)
+
+(defpoll gpumaxmemclock :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh maxmemclock`)
+
+(defpoll gpuname :interval "24h"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh name`)
+	
+(defpoll memusage :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh usage`)
+
+(defpoll memname :interval "24h"
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh name`)
+
+(defwidget background-widget []
+	(box :class "bg"))
+	
+(defwidget disks-widget []
+	(box :class "win" :orientation "v" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 5
+		(box :class "headerbox" :space-evenly false :halign "center"
+			(label :class "headerlabel" :text "Disks"))
+		(box :class "backgroundbox" :orientation "v" :space-evenly false :halign "center" :spacing 8
+			(box :class "hardwarebox" :space-evenly false :halign "center" :hexpand "false" :vexpand "false"
+				(label :class "hardwarelabel" :text "${disk0name}"))
+			(box :class "infobox" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 4
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 30
+					(label :class "size" :text "${disk0usage}")
+					(label :class "temp" :text "${disk0temp}"))
+				(box :orientation "h" :halign "center" :hexpand "false" :vexpand "false"
+					(label :class "diskio" :width 68 :xalign 0 :text "${disk0read}")
+					(label :class "diskio" :xalign 1 :text "${disk0write}")))
+			(box :class "hardwarebox" :space-evenly false :halign "center" :hexpand "false" :vexpand "false"
+				(label :class "hardwarelabel" :text "${disk1name}"))
+			(box :class "infobox" :orientation "h" :space-evenly false :halign "center" :spacing 60
+				(label :class "size" :text "${disk1usage}")
+				(label :class "temp" :text "${disk1temp}")))))
+
+(defwidget memory-widget []
+	(box :class "win" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 5
+		(box :class "headerboxmem" :space-evenly false :halign "center"
+			(label :class "headerlabel" :width 1 :text "Memory"))
+		(box :class "backgroundbox" :orientation "v" :space-evenly false :halign "center" :spacing 8
+			(box :class "hardwarebox" :space-evenly false :halign "center" :hexpand "false" :vexpand "false"
+				(label :class "hardwarelabel" :text "${memname}"))
+			(box :class "infobox" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 4
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 30
+					(label :class "memusage" :text "${memusage}GB"))))))
+
+(defwidget cpu-widget []
+	(box :class "win" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 5
+		(box :class "headerbox" :space-evenly false :halign "center"
+			(label :class "headerlabel" :text "CPU"))
+		(box :class "backgroundbox" :orientation "v" :space-evenly false :halign "center" :spacing 8
+			(box :class "hardwarebox" :space-evenly false :halign "center" :hexpand "false" :vexpand "false"
+				(label :class "hardwarelabel" :text "${cpuname}"))
+			(box :class "infobox" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 4
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 42
+					(label :class "loadlabel" :text "Load:")
+					(label :class "load" :xalign 1 :width 50 :text "${cpuload}%"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 0
+					(label :class "clocklabel" :text "Clock:")
+					(label :class "clock" :xalign 1 :width 87 :text "${cpuclock}Mhz"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 57
+					(label :class "wattslabel" :text "Watts:")
+					(label :class "watts" :text "${cpuwatts}W"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 54
+					(label :class "templabel" :text "Temp:")
+					(label :class "temp" :text "${cputemp}°C"))))))
+
+(defwidget gpu-widget []
+	(box :class "win" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 5
+		(box :class "headerbox" :space-evenly false :halign "center"
+			(label :class "headerlabel" :text "GPU"))
+		(box :class "backgroundbox" :orientation "v" :space-evenly false :halign "center" :spacing 8
+			(box :class "hardwarebox" :space-evenly false :halign "center" :hexpand "false" :vexpand "false"
+				(label :class "hardwarelabel" :text "${gpuname}"))
+			(box :class "infobox" :orientation "v" :space-evenly false :hexpand "false" :vexpand "false" :spacing 4
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 42
+					(label :class "loadlabel" :text "Load:")
+					(label :class "load" :xalign 1 :width 50 :text "${gpuload}%"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 0
+					(label :class "vramlabel" :text "VRAM:")
+					(label :class "clock" :xalign 1 :width 87 :text "${gpuusedmem}/${gputotalmem}GB"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 0
+					(label :class "clocklabel" :text "Clock:")
+					(label :class "clock" :xalign 1 :width 87 :text "${gpucurrentclock}Mhz"))
+				(box :orientation "h" :space-evenly false :halign "center"
+					(label :class "clock" :xalign 1 :width 130 :text "${gpucurrentmemclock}Mhz"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 58
+					(label :class "wattslabel" :text "Watts:")
+					(label :class "watts" :text "${gpuwatts}"))
+				(box :orientation "h" :space-evenly false :halign "center" :spacing 55
+					(label :class "templabel" :text "Temp:")
+					(label :class "temp" :text "${gputemp}°C"))))))
+
+(defwindow background [screen posy]
+	:monitor screen
+	:geometry (geometry :x "570"
+	                   :y posy
+	                   :width "749px"
+	                   :height "255px"
+	                   :anchor "top left")
+	:stacking "fg"
+	:windowtype "normal"
+	:wm-ignore false
+	:exclusive false
+	:class "background-window"
+	(background-widget))
+
+(defwindow disks [screen posy]
+  :monitor screen
+  :geometry (geometry :x "577"
+                      :y posy
+                      :width "170px"
+                      :height "1px"
+                      :anchor "top left")
+  :stacking "overlay"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  :class "disk-window"
+  (disks-widget))
+
+(defwindow memory [screen posy]
+  :monitor screen
+  :geometry (geometry :x "761"
+                      :y posy
+                      :width "191px"
+                      :height "1px"
+                      :anchor "top left")
+  :stacking "overlay"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  :class "memory-window"
+  (memory-widget))
+
+(defwindow cpu [screen posy]
+  :monitor scree
+  :geometry (geometry :x "969"
+                      :y posy
+                      :width "164px"
+                      :height "1px"
+                      :anchor "top left")
+  :stacking "overlay"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  :class "cpu-window"
+  (cpu-widget))
+
+(defwindow gpu [screen posy]
+  :monitor screen
+  :geometry (geometry :x "1146"
+                      :y posy
+                      :width "164px"
+                      :height "1px"
+                      :anchor "top left")
+  :stacking "overlay"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  :class "gpu-window"
+  (gpu-widget))

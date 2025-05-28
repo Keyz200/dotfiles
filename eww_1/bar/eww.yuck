@@ -1,0 +1,433 @@
+(defvar sword "/home/keyz/images/ewwimages/sword1.png")
+(deflisten neticon :initial "󰞃" `tail -Fq /tmp/eww/bar/.neticon`)
+(deflisten micicon :initial "" `tail -Fq /tmp/eww/bar/.micicon`)
+(deflisten volumeicon :initial "" `tail -Fq /tmp/eww/bar/.volumeicon`)
+(defpoll clockpart1 :initial "" :interval "1s" `date +%H`)
+(defpoll clockpart2 :initial "" :interval "1s" `date +%M`)
+(defpoll calendarday :interval "5s" "date '+%d'")
+(defpoll calendaryear :interval "20h" "date '+%Y'")
+(defpoll ping :initial "" :interval "2s" `$HOME/.config/scripts/waybar/ping.sh`)
+(defpoll volume :initial "" :interval "3s" `pamixer --get-volume`)
+(defpoll micvolume :initial "" :interval "3s" `pamixer --default-source --get-volume`)
+(defvar menutoggle false)
+(defvar menutoggle0 false)
+
+(defvar nightlightbox "nightlightboxon")
+
+(defvar usericon "/home/keyz/images/ewwimages/dragon-pfp-30821.png")
+(defvar username "keyz")
+(defpoll hostname :interval "24h" :initial "" `cat /etc/hostname`)
+(defpoll time :interval "1s" :initial "" `date +%I:%M`)
+(defpoll ampm :interval "1s" :initial "" `date +%p`)
+(defpoll day :interval "1s" :initial "" `date +%A`)
+(defpoll daynumber :interval "1s" :initial "" `date +%d`)
+(defpoll month :interval "1s" :initial "" `date +%b`)
+
+(defvar tabbutton1box "tabbuttonboxselected")
+(defvar tabbutton2box "tabbuttonbox")
+(defvar tabbutton3box "tabbuttonbox")
+
+(defvar tab1visible true)
+(defvar tab2visible false)
+(defvar tab3visible false)
+
+(defpoll disk0temp :interval "3s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh temp0 | sed -E 's|(.*)°C|\\1|'`)
+(defpoll disk1temp :interval "3s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh temp1 | sed -E 's|(.*)°C|\\1|'`)
+(defpoll disk0usage :interval "5s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage0 | awk '{printf "%s", $1}' | sed -E 's|\(.*\)/.*|\\1|'`)
+(defpoll disk0max :interval "5s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage0 | awk '{printf "%s", $1}' | sed -E 's|.*/\(.*\)GB|\\1|'`)
+(defpoll disk1usage :interval "5s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage1`)
+(defpoll disk0name :interval "24h" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh name0`)
+(defpoll disk1name :interval "24h" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh name1`)
+(defpoll disk0read :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh ioread`)
+(defpoll disk0write :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh iowrite`)
+(defpoll cputemp :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh temp`)
+(defpoll cpuwatts :interval "2s" :run-while tab1visible :initial "00"
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh watts`)
+(defpoll cpuload :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh load`)
+(defpoll cpuclock :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh clock`)
+(defpoll cpuname :interval "24h" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/cpuUsage.sh name`)
+(defpoll gputemp :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh temp`)
+(defpoll gpuload :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh load`)
+(defpoll gpuusedmem :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh usedmem | awk '{printf "%.1f", $1/1000}'`)
+(defpoll gputotalmem :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh totalmem | awk '{printf "%.0f", $1/1000}'`)
+(defpoll gpuwatts :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh prwdraw | sed -E 's|\([0-9]+\)W|\\1|'`)
+(defpoll gpucurrentclock :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh currentclock`)
+(defpoll gpumaxclock :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh maxclock`)
+(defpoll gpucurrentmemclock :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh currentmemclock`)
+(defpoll gpumaxmemclock :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh maxmemclock`)
+(defpoll gpuname :interval "24h" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh name`)
+(defpoll memusage :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh usage | sed -E 's|\(.*\)/.*|\\1|'`)
+(defpoll memmax :interval "2s" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh usage | sed -E 's|.*/\(.*\)|\\1|'`)
+(defpoll memname :interval "24h" :run-while tab1visible :initial ""
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh name | sed -E 's|^[^ ]+ \(.*\)|\\1|'`)
+
+(defpoll weathernow :initial "" :interval "30s" `curl -s 'wttr.in/Texas?format=1' | sed -E 's|   \\+| |'`)
+(defpoll tdmorning :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 1 | tail -n 1`)
+(defpoll tdnoon :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 2 | tail -n 1`)
+(defpoll tdevening :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 3 | tail -n 1`)
+(defpoll tdnight :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 4 | tail -n 1`)
+(defpoll tmmorning :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 5 | tail -n 1`)
+(defpoll tmnoon :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 6 | tail -n 1`)
+(defpoll tmevening :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 7 | tail -n 1`)
+(defpoll tmnight :interval "1h" :initial "" `cat /tmp/eww/dashboard/.weather | head -n 8 | tail -n 1`)
+(defpoll weather1 :interval "1h" :initial "" `head -n 10 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather2 :interval "1h" :initial "" `head -n 11 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather3 :interval "1h" :initial "" `head -n 12 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather4 :interval "1h" :initial "" `head -n 13 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather5 :interval "1h" :initial "" `head -n 16 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather6 :interval "1h" :initial "" `head -n 17 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather7 :interval "1h" :initial "" `head -n 18 /tmp/eww/dashboard/.weather | tail -n 1`)
+(defpoll weather8 :interval "1h" :initial "" `head -n 19 /tmp/eww/dashboard/.weather | tail -n 1`)
+
+(deflisten app1 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.app1`)
+(deflisten app2 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.app4`)
+(deflisten app3 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.app7`)
+(deflisten app4 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.app10`)
+(deflisten app5 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.app13`)
+(deflisten sender1 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.sender2`)
+(deflisten sender2 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.sender5`)
+(deflisten sender3 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.sender8`)
+(deflisten sender4 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.sender11`)
+(deflisten sender5 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.sender14`)
+(deflisten content1 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.content3`)
+(deflisten content2 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.content6`)
+(deflisten content3 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.content9`)
+(deflisten content4 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.content12`)
+(deflisten content5 :initial "" :run-while tab3visible
+    `tail -Fq /tmp/eww/notifications/.content15`)
+(deflisten icon1 :initial "" :run-while tab3visible
+	`tail -Fq /tmp/eww/notifications/.icon1`)
+(deflisten icon2 :initial "" :run-while tab3visible
+	`tail -Fq /tmp/eww/notifications/.icon4`)
+(deflisten icon3 :initial "" :run-while tab3visible
+	`tail -Fq /tmp/eww/notifications/.icon7`)
+(deflisten icon4 :initial "" :run-while tab3visible
+	`tail -Fq /tmp/eww/notifications/.icon10`)
+(deflisten icon5 :initial "" :run-while tab3visible
+	`tail -Fq /tmp/eww/notifications/.icon13`)
+
+(defpoll songname :interval "1s" :initial ""
+	`$HOME/.config/scripts/waybar/musicname.sh | cut -c1-35`)
+(deflisten playpause :initial ""
+	`tail -Fq /tmp/eww/musicplayer/.playpause`)
+(defpoll musicprogress :initial "" :interval "1s"
+	`$HOME/.config/scripts/eww/musicplayer/musicprogress.sh progress`)
+(defpoll musiclength :initial "" :interval "1s"
+	`$HOME/.config/scripts/eww/musicplayer/musicprogress.sh length`)
+
+(defwidget menu-widget []
+	(box :class "menuh" :space-evenly false :orientation "h" :hexpand false :vexpand false
+		(box :class "sidebox" :space-evenly false :orientation "v" :hexpand false :vexpand false :spacing 24
+			(box :orientation "v" :space-evenly false
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh togglecalendar"
+					(label :class "buttonicon" :text "󰃭"))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh todo"
+					(label :class "buttonicon" :text "󰃯"))
+				(label :class "sidebarseparator" :text "____"))
+			(box :orientation "v" :space-evenly false
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh home"
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh steam"
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh heroic"
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh vesktop"
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh stremio"
+					(label :class "buttonicon" :text "󰐌"))
+			(label :class "sidebarseparator" :text "____"))
+			(box :orientation "v" :space-evenly false
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh slurp &"
+					(label :class "buttonicon" :text "󰕞"))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh hyprpicker &"
+					(label :class "buttonicon" :text "󰸱"))
+				(eventbox :class "${nightlightbox}" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh togglenightlight"
+					(label :class "buttonicon" :text "󰤄"))
+				(eventbox :class "sidebuttonbox" :space-evenly false
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/hyprland/themechange.sh &"
+					(label :class "buttonicon" :text ""))
+			(label :class "sidebarseparator" :text "____"))
+			(box :orientation "v" :space-evenly false
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh lock"
+					(label :class "buttonicon" :text ""))
+				(eventbox :class "sidebuttonbox" :space-evenly false :onclick "hyprctl dispatch exit"
+					(label :class "buttonicon" :text "󰍃"))
+				(eventbox :class "sidebuttonbox":space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh menutoggle"
+					(label :class "buttonicon" :text "󰮫"))))		
+		(box :class "menu" :space-evenly false :orientation "v" :hexpand false :vexpand false :spacing 10
+			(box :class "dayanduserbox" :space-evenly false :orientation "h" :hexpand false :vexpand false
+				(box :class "userhostbox" :space-evenly false :orientation "h" :hexpand false :vexpand false :halign "center" :spacing 10
+					(box :class "usericon" :halign "center" :style "background-image: url('${usericon}');")
+					(box :space-evenly false :orientation "v"
+					(label :class "userlabel" :text "${username}")
+					(label :class "hostlabel" :text "${hostname}")))
+				(box :class "dayandtimebox" :space-evenly false :orientation "v" :hexpand false :vexpand false
+					(label :class "time" :text "󰅐  ${time} ${ampm}")
+					(box :space-evenly false :orientation "h"
+						(label :class "day" :xalign 1 :text "${day} ${month} ${daynumber}"))))
+			(box :class "tabsbox" :space-evenly false :orientation "h" :spacing 10
+				(eventbox :class "${tabbutton1box}" :space-evenly false :orientation "v" :onclick "$HOME/.config/scripts/eww/bar/buttons.sh tab1button"
+					(box :class "${tabbutton1box}" :space-evenly false :orientation "v"
+						(label :class "tabicon" :text "󰍹")
+						(label :classs "tablabel" :width 95 :text "System")))
+				(eventbox :class "${tabbutton2box}" :space-evenly false :orientation "v" :onclick "$HOME/.config/scripts/eww/bar/buttons.sh tab2button"
+					(box :class "${tabbutton2box}" :space-evenly false :orientation "v"
+						(label :class "tabicon" :text "󰖐")
+						(label :classs "tablabel" :width 95 :text "Weather")))
+				(eventbox :class "${tabbutton3box}" :space-evenly false :orientation "v" :onclick "$HOME/.config/scripts/eww/bar/buttons.sh tab3button"
+					(box :class "${tabbutton3box}" :space-evenly false :orientation "v"
+						(label :class "tabicon" :text "")
+						(label :classs "tablabel" :width 95 :text "Notifications"))))
+			(scroll :vexpand true :class "tabinformationscroll" :scrollbar true
+				(box :class "scrollbox"
+					(box :class "tabinformation" :orientation "v" :space-evenly false :visible tab1visible :spacing 15
+						(box :class "cpubox" :space-evenly false :orientation "v"
+							(label :class "hardwarename" :text " CPU")
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${cpuload}%")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "usageicon" :width 15 :text "󰓅")
+								(scale :min 0 :max 100 :active false :value cpuload))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${cputemp}°C")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "temperatureicon" :width 15 :text "")
+								(scale :min 0 :max 85 :active false :value cputemp))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${cpuclock}Mhz")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "clockspeedicon" :width 15 :text "󰅒")
+								(scale :min 0 :max 4500 :active false :value cpuclock))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${cpuwatts}W")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "wattsicon" :width 15 :text "󱐋")
+								(scale :min 0 :max 180 :active false :value cpuwatts)))
+						(box :class "gpubox" :space-evenly false :orientation "v"
+							(label :class "hardwarename" :text "󰾲 GPU")
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${gpuload}%")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "usageicon" :text "󰓅")
+								(scale :min 0 :max 100 :active false :value gpuload))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${gputemp}°C")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "temperatureicon" :width 15 :text "")
+								(scale :min 0 :max 85 :active false :value gputemp))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${gpuusedmem}/${gputotalmem}GB")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "memoryicon" :width 15 :text "󱤓")
+								(scale :min 0 :max 12 :active false :value gpuusedmem))
+							(label :class "detailedinfo" :width 180 :xalign 1 :text "${gpucurrentclock}Mhz ${gpucurrentmemclock}Mhz")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "clockspeedicon" :text "󰅒")
+								(scale :min 0 :max gpumaxclock :active false :value gpucurrentclock))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${gpuwatts}W")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "wattsicon" :width 15 :text "󱐋")
+								(scale :min 0 :max 220 :active false :value gpuwatts)))
+						(box :class "membox" :space-evenly false :orientation "v"
+							(label :class "hardwarename" :text "󰘚 Memory")
+							(box :space-evenly false :orientation "h"
+								(label :class "detailedinfo" :width 132 :height 30 :yalign 0.9 :xalign 0.7 :text "${memname}")
+								(label :class "detailedinfo" :width 132 :height 30 :yalign 0.9 :xalign 1 :text "${memusage}/${memmax}GB"))
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "memoryicon" :width 15 :text "󱤓")
+								(scale :min 0 :max memmax :active false :value memusage)))
+						(box :class "disksbox" :space-evenly false :orientation "v"
+							(label :class "hardwarename" :text " Disks")
+							(box :space-evenly false :orientation "h"
+								(label :class "detailedinfo" :width 132 :height 30 :yalign 0.9 :xalign 0.6 :text "${disk0name}")
+								(label :class "detailedinfo" :width 132 :height 30 :yalign 0.9 :xalign 1 :text "${disk0usage}/${disk0max}GB"))
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "memoryicon" :width 15 :text "󱤓")
+								(scale :min 0 :max disk0max :active false :value disk0usage))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${disk0temp}°C")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "temperatureicon" :width 15 :text "")
+								(scale :min 0 :max 70 :active false :value disk0temp))
+							(box :space-evenly false :orientation "h"
+								(label :class "detailedinfo" :width 144 :height 30 :yalign 0.9 :xalign 1 :text "${disk1name}")
+								(label :class "detailedinfo" :width 120 :height 30 :yalign 0.9 :xalign 1 :text "???/${disk1usage}"))
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "memoryicon" :width 15 :text "󱤓")
+								(scale :min 0 :max 931 :active false :value 0))
+							(label :class "detailedinfo" :width 80 :xalign 1 :text "${disk1temp}°C")
+							(box :class "hardwareinfo" :space-evenly false :orientation "h" :spacing 10
+								(label :class "temperatureicon" :width 15 :text "")
+								(scale :min 0 :max 70 :active false :value disk1temp))))
+					(box :class "tabinformation" :orientation "v" :space-evenly false :visible tab2visible :halign "center"
+						(label :class "weathernow" :text "${weathernow}")
+						(label :class "forecastlabel" :text "Today")
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "03:00:")
+							(label :class "actualweather" :text "${weather1}")
+							(label :class "forecastweather" :width 87 :xalign 1 :text "${tdmorning}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "09:00:")
+							(label :class "actualweather" :text "${weather2}")
+							(label :class "forecastweather" :width 87 :height 30 :xalign 1 :text "${tdnoon}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "15:00:")
+							(label :class "actualweather" :text "${weather3}")
+							(label :class "forecastweather" :width 87 :xalign 1 :text "${tdevening}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "21:00:")
+							(label :class "actualweather" :text "${weather4}")
+							(label :class "forecastweather" :width 87 :height 30 :xalign 1 :text "${tdnight}"))
+						(label :class "forecastlabel" :text "Tomorrow")
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "03:00:")
+							(label :class "actualweather" :text "${weather5}")
+							(label :class "forecastweather" :width 87 :height 30 :xalign 1 :text "${tmmorning}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "09:00:")
+							(label :class "actualweather" :text "${weather6}")
+							(label :class "forecastweather" :width 87 :height 30:xalign 1 :text "${tmnoon}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "15:00:")
+							(label :class "actualweather" :text "${weather7}")
+							(label :class "forecastweather" :width 87 :height 30 :xalign 1 :text "${tmevening}"))
+						(box :space-evenly true :orientation "h"
+							(label :class "weathertime" :xalign 0 :text "21:00:")
+							(label :class "actualweather" :text "${weather8}")
+							(label :class "forecastweather" :width 87 :height 30 :xalign 1 :text "${tmnight}")))
+					(box :class "tabinformation" :orientation "v" :space-evenly false :visible tab3visible :spacing 13
+						(box :class "notificationbox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+				          	(box :class "appiconbox" :orientation "v" :space-evenly false
+				          		(box :class "appicon" :style "background-image: url('${icon1}');"))
+				          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+				          		(label :class "sender" :limit-width 19 :width 240 :xalign 0 :text "${sender1}")
+				          		(label :class "content" :limit-width 26 :width 240 :xalign 0 :text "${content1}")))
+				        (box :class "notificationbox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          	(box :class "appiconbox" :orientation "v" :space-evenly false
+	   			          		(box :class "appicon" :style "background-image: url('${icon2}');"))
+	   			          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          		(label :class "sender" :limit-width 19 :width 240 :xalign 0 :text "${sender2}")
+	   			          		(label :class "content" :limit-width 26 :width 240 :xalign 0 :text "${content2}")))
+				        (box :class "notificationbox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          	(box :class "appiconbox" :orientation "v" :space-evenly false
+	   			          		(box :class "appicon" :style "background-image: url('${icon3}');"))
+	   			          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          		(label :class "sender" :limit-width 19 :width 240 :xalign 0 :text "${sender3}")
+	   			          		(label :class "content" :limit-width 26 :width 240 :xalign 0 :text "${content3}")))
+				        (box :class "notificationbox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	  			          	(box :class "appiconbox" :orientation "v" :space-evenly false
+	  			          		(box :class "appicon" :style "background-image: url('${icon4}');"))
+	  			          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	  			          		(label :class "sender" :limit-width 19 :width 240 :xalign 0 :text "${sender4}")
+	  			          		(label :class "content" :limit-width 26 :width 240 :xalign 0 :text "${content4}")))
+				        (box :class "notificationbox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          	(box :class "appiconbox" :orientation "v" :space-evenly false
+	   			          		(box :class "appicon" :style "background-image: url('${icon5}');"))
+	   			          	(box :class "infobox" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 0
+	   			          		(label :class "sender" :limit-width 19 :width 240 :xalign 0 :text "${sender5}")
+	   			          		(label :class "content" :limit-width 26 :width 240 :xalign 0 :text "${content5}"))))))
+			(box :class "musicplayerbox" :orientation "v" :space-evenly false :vexpand false :hexpand false :spacing 0
+				(button :onclick "$HOME/.config/scripts/waybar/musicname.sh | wl-copy"
+					(label :class "songname" :limit-width 22 :text "${songname}"))
+				(box :class "mediabuttonsbox" :orientation "h" :space-evenly false :halign "center" :spacing 5
+					(button :class "mediabutton" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh previous" "")
+					(button :class "mediabutton" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh playpause" "${playpause}")
+					(button :class "mediabutton" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh next" ""))
+				(box :class "musicprogress"
+					(scale :min 0 :max musiclength :active false :value musicprogress))))))
+
+(defwidget menurev-widget []
+	(revealer :transition "slideright" :reveal menutoggle :duration "150ms"
+		(menu-widget)))
+
+(defwidget menurev0-widget []
+	(revealer :transition "slideright" :reveal menutoggle0 :duration "150ms"
+		(menu-widget)))
+
+(defwidget calendar-widget []
+	(box :class "calendarboxout" :space-evenly false
+		(box :class "calendarbox" :orientation "v" :space-evenly false
+			(calendar :class "calendar" :day calendarday :year calendaryear :show-heading true :show-day-names true))))
+
+(defwidget bar-widget []
+	(box :class "barbox" :space-evenly false :orientation "v" :hexpand false :vexpand false
+		(eventbox :class "extendmenu" :space-evenly false  :hexpand false :vexpand false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh menutoggle"
+			(label :class "menuopener" :text "󰍜"))
+		(eventbox :class "micbox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh togglemic"
+			(label :class "micicon" :tooltip "${micvolume}%" :text "${micicon}"))
+		(eventbox :class "volumebox" :space-evenly false :onclick "$HOME/.config/scripts/eww/bar/buttons.sh togglevolume"
+			(label :class "volumeicon" :tooltip "${volume}%" :text "${volumeicon}"))
+		(eventbox :class "netbox" :space-evenly false :onclick "ghostty --class=com.ping.report -e ping google.com &"
+			(label :class "neticon" :tooltip "${ping}ms" :text "${neticon}"))
+		(eventbox :class "clockbox" :space-evenly false :orientation "v" :tooltip "${day}" :onclick "$HOME/.config/scripts/eww/bar/buttons.sh togglecalendar"
+			(box :class "clockbox" :space-evenly false :orientation "v" 
+				(label :class "clockh" :text "${clockpart1}")
+				(label :class "clockm" :text "${clockpart2}")))
+		(eventbox :class "powerbox" :space-evenly false
+			(button :class "powerbutton" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh power" :onrightclick "ghostty --class=com.power.button -e doas reboot &" "⏻"))))
+
+(defwidget sword-widget []
+	(box :class "sword" :style "background-image: url('${sword}');"))
+
+(defwindow calendar [screen] :stacking "fg" :monitor screen
+		:geometry (geometry :x -34 :y 700 :width 0 :height 0)
+				(calendar-widget))
+				
+(defwindow menu :stacking "fg" :monitor 1
+		:geometry (geometry :x -50 :y 400 :width 200 :height 1000)
+				(menu-widget))
+				
+(defwindow bar :stacking "fg" :monitor 1
+		:geometry (geometry :x -68 :y 0 :width "20px" :height "203px" :anchor "center left")
+				(bar-widget))
+(defwindow bar0 :stacking "fg" :monitor 0
+		:geometry (geometry :x -68 :y 0 :width "20px" :height "203px" :anchor "center left")
+				(bar-widget))
+
+(defwindow sword :stacking "bg" :exclusive true :monitor 1
+		:geometry (geometry :x 5 :y 0 :width 0 :height 1042 :anchor "center left")
+				(sword-widget))
+(defwindow sword0 :stacking "bg" :exclusive true :monitor 0
+		:geometry (geometry :x 5 :y 0 :width 0 :height 1042 :anchor "center left")
+				(sword-widget))
+
+(defwindow menurev :stacking "fg" :monitor 1
+		:geometry (geometry :x -44 :y 388 :width 0 :height 610)
+				(menurev-widget))
+
+(defwindow menurev0 :stacking "fg" :monitor 0
+		:geometry (geometry :x -44 :y 388 :width 0 :height 610)
+				(menurev0-widget))
+

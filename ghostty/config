@@ -1,0 +1,98 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/keyz/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+
+
+font-family = JetBrains Mono NL
+font-size = 13
+adjust-cursor-thickness = 13
+cursor-text = 000000
+cursor-click-to-move
+mouse-shift-capture = never
+window-inherit-working-directory
+cursor-color = bababa
+cursor-opacity = 0.9
+#copy-on-select = clipboard
+#app-notifications = no-clipboard-copy
+theme = BlulocoDark
+#theme = Galaxy
+background-opacity = 0.9
+background = 212121
+window-decoration = false
+gtk-single-instance = true
+confirm-close-surface = false
+keybind = shift+enter=text:\r
+keybind = ctrl+`=esc:d
+keybind = super+alt+u=text:doas guix system reconfigure ~/canis-major/canis-major/sirius-b.scm
+keybind = super+alt+p=text:guix home reconfigure ~/canis-major/canis-major/keyz.scm
+keybind = super+alt+c=text:CROC_SECRET="" croc --yes
+keybind = super+alt+l=text:ls -la
+keybind = super+alt+h=text:micro .config/hypr/hyprland.conf
+keybind = super+alt+j=text:micro ~/canis-major/canis-major/keyz.scm
+keybind = super+alt+k=text:micro .config/
+keybind = shift+home=adjust_selection:beginning_of_line
+# keybind = unconsumed:shift+end=unbind
+# keybind = unconsumed:ctrl+shift+left=unbind
+# keybind = unconsumed:ctrl+shift+right=unbind
+# keybind = shift+right=adjust_selection:right
+keybind = "ctrl+shift+x=write_screen_file:paste"
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_tab
+keybind = ctrl+1=goto_tab:1
+keybind = ctrl+2=goto_tab:2
+keybind = ctrl+3=goto_tab:3
+keybind = ctrl+4=goto_tab:4
+keybind = ctrl+5=goto_tab:5
+keybind = ctrl+6=goto_tab:6
+keybind = ctrl+7=goto_tab:7
+keybind = ctrl+7=goto_tab:7
+keybind = ctrl+8=goto_tab:8
+keybind = super+c=copy_to_clipboard
+keybind = global:super+shift+a=toggle_quick_terminal

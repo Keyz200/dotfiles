@@ -1,0 +1,12 @@
+{
+    "colorscheme": "material-tc",
+    "cursorline": false,
+    "diffgutter": true,
+    "mkparents": true,
+    "savecursor": true,
+    "scrollbar": true,
+    "scrollbarchar": "│",
+    "softwrap": true,
+    "sucmd": "doas",
+    "wordwrap": true
+}

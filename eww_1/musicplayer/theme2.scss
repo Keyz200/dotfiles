@@ -1,0 +1,77 @@
+$bg-color1: rgba(20, 20, 20, 0.85);
+$bg-color: linear-gradient(to bottom, rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.93));
+$text-color: #cec4c4;
+$button-color: #cec4c4;
+$radius: 12px;
+
+* {
+  all: unset;
+  font-family: "Source Han Sans";
+}
+
+.win {
+	background: $bg-color;
+	border-radius: $radius;
+ 	border: 1px solid darken(#e8dfd0, 80%);
+}
+
+.image {
+	background-color: transparent;
+	background-size: cover;
+	background-position: center;
+	border-radius: $radius $radius 0 0;
+	min-height: 352px;
+	min-width: 280px;
+	margin-bottom: -40px;
+}
+
+.infobox {
+	padding: 0px 15px 0px 15px;
+}
+
+.adjacentsongs {
+	color: darken($text-color, 44%);
+	font-size: 14px;
+	font-weight: bold;
+	opacity: 0.5;
+}
+
+.nowplaying {
+	color: $text-color;
+	font-size: 15px;
+	font-weight: bold;
+	margin: -2px 0;
+}
+
+.status {
+	color: $text-color;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 14px 0px 8px;
+}
+
+.button, .buttonshuffle, .buttonadd {
+	color: $button-color;
+	border-radius: 12px;
+	transition: all 0.2s ease;
+	padding: 2px 17px;
+	margin-bottom: 5px;
+
+	&:hover {
+    	color: lighten($button-color, 10%);
+		background-color: rgba(255, 255, 255, 0.1);
+  	}
+}
+
+.button {
+	font-size: 24px;
+}
+
+.buttonshuffle {
+	font-size: 20px;
+}
+
+.buttonadd {
+	font-size: 34px;
+	padding: 1px 10px 4px 10px;
+}

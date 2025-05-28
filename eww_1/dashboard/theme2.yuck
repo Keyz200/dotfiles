@@ -1,0 +1,405 @@
+(defpoll size :interval "5s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage0 | awk '{printf "%s", $1}'`)
+(defpoll sizepercentage :interval "5s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/diskUsage.sh usage0 | awk '{printf "%s", $2}' | sed -E 's|\\(([0-9]+).*|\\1|'`)
+
+(defpoll uptimehours :interval "60s"
+	:initial ""
+	`uptime | sed -E "s|.*up.* ([0-9]+):([0-9]+).*|\\1 hours|"`)
+
+(defpoll uptimemins :interval "60s"
+	:initial ""
+	`uptime | sed -E "s|.*up.* ([0-9]+):([0-9]+).*|\\2 mins|"`)
+
+(deflisten cpu :initial ""
+	`tail -Fq /tmp/eww/dashboard/.cpu`)
+
+(deflisten gpu :initial ""
+	`tail -Fq /tmp/eww/dashboard/.gpu`)
+
+(defpoll memusage :interval "2s"
+	:initial ""
+	`$HOME/.config/scripts/hardwareinfo/memUsage.sh usage | awk -F/ '{printf \"%.0f\\n\", ($1 / $2) * 100}'`)
+
+(deflisten usagetemp :initial ""
+  `tail -Fq /tmp/eww/dashboard/.usagetemp`)
+
+(defpoll timer :initial "00:00" :interval "1s"
+ 	`$HOME/.config/scripts/eww/dashboard/timer.sh`)
+
+(deflisten timerstate :initial ""
+ 	`tail -Fq /tmp/eww/dashboard/.timerstate`)
+
+(defvar userimage "/home/keyz/images/imagemagick/converter/saved/pfpWidgetsProject00000modified.png")
+
+(defvar distro "")
+
+(defvar username "keyz")
+
+(defvar useralias "@keyz")
+
+(defpoll hostname :interval "24h"
+	:initial ""
+	`cat /etc/hostname`)
+
+(defpoll songstatus :interval "1s"
+	:initial ""
+	`qmmp --no-start --status | grep -o '[0-9]\\+:[0-9]\\+\\/[0-9]\\+:[0-9]\\+'`)
+
+(defpoll songname :interval "1s"
+	:initial ""
+	`$HOME/.config/scripts/waybar/musicname.sh | cut -c1-20`)
+
+(deflisten playpause :initial ""
+	`tail -Fq /tmp/eww/musicplayer/.playpause`)
+
+(defpoll musicprogress :initial "" :interval "1s"
+	`$HOME/.config/scripts/eww/musicplayer/musicprogress.sh progress`)
+
+(defpoll musiclength :initial "" :interval "1s"
+	`$HOME/.config/scripts/eww/musicplayer/musicprogress.sh length`)
+
+(deflisten quote :initial ""
+	`tail -Fq /tmp/eww/dashboard/.quote`)
+
+(defpoll author :interval "24h"
+	:initial ""
+	`$HOME/.config/scripts/eww/dashboard/quoter.sh author`)
+
+(defpoll dayornight :interval "60s"
+	:initial ""
+	`$HOME/.config/scripts/eww/dashboard/dayornight.sh`)
+
+(defpoll celcius :interval "180s"
+	:initial "20°C"
+	`$HOME/.config/scripts/waybar/weather.sh temperature`)
+
+(defpoll morning :interval "1s"
+	:initial ""
+	`cat /tmp/eww/dashboard/.weather | head -n 1 | tail -n 1`)
+
+(defpoll noon :interval "1h"
+	:initial ""
+	`cat /tmp/eww/dashboard/.weather | head -n 2 | tail -n 1`)
+
+(defpoll evening :interval "1h"
+	:initial ""
+	`cat /tmp/eww/dashboard/.weather | head -n 3 | tail -n 1`)
+
+(defpoll night :interval "1h"
+	:initial ""
+	`cat /tmp/eww/dashboard/.weather | head -n 4 | tail -n 1`)
+
+(deflisten weatherday :initial ""
+	`tail -Fq /tmp/eww/dashboard/.day`)
+
+(deflisten switchday :initial ""
+	`tail -Fq /tmp/eww/dashboard/.switchday`)
+
+(defpoll currenthour :interval "60s"
+	:initial ""
+	`date +%I%M%p | sed -E "s|([0-9]{2})([0-9]{2})(.*)|\\1|"`)
+
+(defpoll currentminute :interval "60s"
+	:initial ""
+	`date +%I%M%p | sed -E "s|([0-9]{2})([0-9]{2})(.*)|\\2|"`)
+
+(defpoll ampm :interval "60s"
+	:initial ""
+	`date +%I%M%p | sed -E "s|([0-9]{2})([0-9]{2})(.*)|\\3|"`)
+
+(defpoll dayoftheweek :interval "30s"
+	:initial ""
+	`date +%A`)
+
+(defpoll month :interval "60s"
+	:initial ""
+	`date +%b`)
+
+(defpoll dayofthemonth :interval "30s"
+	:initial ""
+	`date +%e`)
+
+(defpoll todo1 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 1`)
+
+(defpoll todo2 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 2 | tail -n 1`)
+
+(defpoll todo3 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 3 | tail -n 1`)
+
+(defpoll todo4 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 4 | tail -n 1`)
+
+(defpoll todo5 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 5 | tail -n 1`)
+
+(defpoll todo6 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 6 | tail -n 1`)
+
+(defpoll todo7 :interval "2s"
+	:initial ""
+	`cat $HOME/documents/todo.txt | head -n 7 | tail -n 1`)
+
+(defwidget background-widget []
+	(box :class "bg"))
+	
+(defwidget folders-widget []
+	(box :class "win" :orientation "v" :space-evenly false :spacing 16
+		(box :class "diskbox" :orientation "h" :space-evenly false :spacing 30			(box :space-evenly false
+				(circular-progress :class "diskprogress" :value "${sizepercentage}" :thickness 24 :start-at "30" :clockwise true))
+			(box :space-evenly false
+				(label :class "disksize" :text "${size}")))
+		(box :class "folders" :orientation "v" :space-evenly false
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder1" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh desktop" "󱂵")
+				(button :class "labelfolder1" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh desktop" "Desktop"))
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder2" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh documents" "󰉋")
+				(button :class "labelfolder2" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh documents" "Documents"))
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder3" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh downloads" "󰉍")
+				(button :class "labelfolder3" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh downloads" "Downloads"))
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder4" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh images" "󰉏")
+				(button :class "labelfolder4" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh images" "Images"))
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder5" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh music" "󱍙")
+				(button :class "labelfolder5" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh music" "Music"))
+			(box :orientation "h" :space-evenly false
+				(button :class "iconfolder6" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh scripts" "󰯂")
+				(button :class "labelfolder6" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh scripts" "Scripts")))))
+
+(defwidget hardwareinfo-widget []
+	(box :class "win" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false" :spacing 20
+		(box :class "uptimebox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 20
+			(box :space-evenly false :vexpand "false" :hexpand "false"
+				(label :class "uptimeicon" :text "󰥔"))
+			(box :class "hoursminsbox" :space-evenly false :vexpand "false" :hexpand "false" :orientation "v"
+				(label :class "uptimehourslabel" :xalign 0 :text "${uptimehours}")
+				(label :class "uptimeminslabel" :xalign 0.5 :text "${uptimemins}")))
+		(box :orientation "v" :space-evenly false :spacing 1 :halign "center" :vexpand "false" :hexpand "false" :spacing 14
+			(box :class "cpubox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 15
+				(label :class "cpuicon" :text "")
+				(scale :min 0 :max 100 :active false :value cpu))
+			(box :class "gpubox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 16
+				(label :class "gpuicon" :text "󰾲")
+				(scale :min 0 :max 100 :active false :value gpu))
+			(box :class "membox" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false" :spacing 14
+				(label :class "memicon" :text "")
+				(scale :min 0 :max 100 :active false :value memusage)))))
+
+(defwidget switch-widget []
+	(box :class "win" 
+		(button :class "switchicon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh usagetemp" "${usagetemp}")))
+
+(defwidget fullhardwareinfo-widget []
+	(box :class "win"
+		(button :class "fullhardwareinfoicon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh fullhardwareinfo" "󰅍")))
+
+(defwidget apps-widget []
+	(box :class "win" :orientation "v" :space-evenly false
+		(box :class "appbox" :space-evenly false :spacing 1
+			(button :class "appsteam" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh steam" "")
+			(button :class "apprandom" :onclick "" "󱢡")
+			(button :class "apprl" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh heroic" ""))
+		(box :class "appbox" :space-evenly false :spacing 1
+			(button :class "appdiscord" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh vesktop" "")
+			(button :class "appstremio" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh stremio" "󰐌")
+			(button :class "appgmail" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh gmail" "󰊫"))
+		(box :class "appbox" :space-evenly false :spacing 1
+			(button :class "appzen" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh zen" "󰰷")
+			(button :class "appspotify" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh spotify" "")
+			(button :class "appyoutube" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh youtube" ""))
+		(box :class "appbox" :space-evenly false :spacing 1
+			(button :class "appslurp" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh slurp &" "󰕞")
+			(button :class "apprefresh" :onclick "$HOME/.config/scripts/hyprland/themechange.sh &" "󰃣")
+			(button :class "appexit" :onclick "hyprctl dispatch exit" "󰍃"))))
+
+(defwidget timer-widget []
+	(box :class "win" :orientation "v" :space-evenly false :spacing 28
+		(box :class "timericonbox" :space-evenly false :halign "center"
+			(label :class "timericon" :text "󱎫"))
+		(box :orientation "v" :space-evenly false :halign "center" :spacing 10
+			(label :class "timerlabel" :text "${timer}")
+			(button :class "timerbutton" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh timer" "${timerstate}"))))
+
+(defwidget quote-widget []
+	(box :class "win" :orientation "v" :space-evenly false :vexpand "false" :hexpand "false"
+		(box :class "quotebox" :orientation "h" :space-evenly false :halign "center" :vexpand "false" :hexpand "false"
+			(button :class "quote" :onclick "cat /tmp/eww/dashboard/.quote | wl-copy" "${quote}"))))
+
+(defwidget user-widget []
+	(box :class "win" :orientation "v" :space-evenly false :spacing 20
+		(box :class "userimagebox" :orientation "v" :space-evenly false
+			(box :class "userimage" :halign "center" :style "background-image: url('${userimage}');"))
+		(label :class "distro" :text "${distro}")
+		(label :class "username" :text "${username}")))
+
+(defwidget host-widget []
+	(box :class "win" :orientation "v" :space-evenly false
+		(label :class "hostname" :text "${hostname}")))
+
+(defwidget musicplayer-widget []
+	(box :class "win" :orientation "v" :space-evenly false :vexpand "false" :xexpand "false" :spacing 2
+		(button :onclick "$HOME/.config/scripts/waybar/musicname.sh | wl-copy"
+			(label :class "songname" :limit-width 22 :text "${songname}"))
+		(box :class "mediabuttonsbox" :orientation "h" :space-evenly false :halign "center"
+			(button :class "mediabutton" :onclick "qmmp --no-start --previous" "")
+			(button :class "mediabutton" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh playpause" "${playpause}")
+			(button :class "mediabutton" :onclick "qmmp --no-start --next" ""))
+		(box :class "musicprogress"
+			(scale :min 0 :max musiclength :active false :value musicprogress))))
+
+(defwidget weather-widget []
+	(box :class "win" :orientation "v" :space-evenly false
+		(box :class "weatherbox" :orientation "h" :space-evenly false :spacing 230
+			(label :class "daynighticon" :halign "start" :text "${dayornight}")
+			(label :class "temp" :halign "end" :text "${celcius}"))
+		(box :class "forecasthorizontalbox" :orientation "h" :space-evenly false :halign "center"
+			(box :class "dayandmonthbox" :orientation "v" :space-evenly false
+				(label :class "month" :text "${month}")
+				(label :class "dayofthemonth" :text "${weatherday}"))
+			(box :class "forecastbox" :orientation "v" :space-evenly false
+				(label :class "forecasttime" :text "03:00")
+				(label :class "forecast" :width 87 :text "${morning}"))
+			(box :class "forecastbox" :orientation "v" :space-evenly false
+				(label :class "forecasttime" :text "09:00")
+				(label :class "forecast" :width 87 :text "${noon}"))
+			(box :class "forecastbox" :orientation "v" :space-evenly false
+				(label :class "forecasttime" :text "15:00")
+				(label :class "forecast" :width 87 :text "${evening}"))
+			(box :class "forecastbox" :orientation "v" :space-evenly false
+				(label :class "forecasttime" :text "21:00")
+				(label :class "forecast" :width 87 :text "${night}"))
+			(box :class "dayswitchbox" :orientation "v" :space-evenly false
+				(button :class "dayswitch" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh weatherday" "${switchday}")))))
+
+(defwidget daytime-widget []
+	(box :class "win" :orientation "h" :space-evenly false :vexpand "false" :hexpand "false"
+		(label :class "timehour" :text "${currenthour}")
+		(label :class "timeminute" :text "${currentminute}")
+		(box :class "dayoftheweekbox":orientation "v" :space-evenly false :valign "center" :vexpand "false" :hexpand "false"
+			(label :class "timeampm" :xalign 1 :text "${ampm}")
+			(label :class "day" :width 192  :xalign 1 :text "${dayoftheweek}"))))
+
+(defwidget todo-widget []
+	(box :class "win" :orientation "v" :space-evenly false
+		(box :orientation "h" :class "todobox" :space-evenly false
+			(button :class "todoicon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh todo" "")
+			(button :class "todobutton" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh todo" "To do"))
+		(box :orientation "v" :space-evenly false :halign "start" :valign "center"
+			(box :orientation "h" :space-evenly false
+				(label :class "todonumber" :xalign 0 :text "1. ")
+				(label :class "todolist" :xalign 0 :wrap "true" :limit-width 30 :text "${todo1}"))
+			(box :orientation "h" :space-evenly false
+				(label :class "todonumber" :xalign 0 :text "2. ")
+				(label :class "todolist" :xalign 0 :wrap "true" :limit-width 30 :text "${todo2}"))
+			(box :orientation "h" :space-evenly false
+				(label :class "todonumber" :xalign 0 :text "3. ")
+				(label :class "todolist" :xalign 0 :wrap "true" :limit-width 30 :text "${todo3}"))
+			(box :orientation "h" :space-evenly false
+				(label :class "todonumber" :xalign 0 :text "4. ")
+				(label :class "todolist" :xalign 0 :wrap "true" :limit-width 30 :text "${todo4}"))
+			(box :orientation "h" :space-evenly false
+				(label :class "todonumber" :xalign 0 :text "5. ")
+				(label :class "todolist" :xalign 0 :wrap "true" :limit-width 30 :text "${todo5}")))))
+
+(defwidget colorpicker-widget []
+	(box :class "win"
+		(button :class "colorpickericon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh colorpicker" "󰸱")))
+
+(defwidget nightlight-widget []
+	(box :class "win"
+		(button :class "nightlighticon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh nightlight" "󰖨")))
+
+(defwidget lock-widget []
+	(box :class "win"
+		(button :class "lockicon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh lock" "")))
+
+(defwidget power-widget []
+	(box :class "win"
+		(button :class "powericon" :onclick "$HOME/.config/scripts/eww/dashboard/buttons.sh power" "󰐥")))
+
+(defwindow background :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 311 :y 135 :width "1299px" :height "742px")
+					(background-widget))
+					
+(defwindow folders :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 326 :y 150 :width "244px" :height "350px")
+					(folders-widget))
+
+(defwindow hardwareinfo :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 583 :y 150 :width "244px" :height "222px")
+					(hardwareinfo-widget))
+
+(defwindow switch :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 583 :y 385 :width "115px" :height "115px")
+					(switch-widget))
+
+(defwindow fullhardwareinfo :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 711 :y 385 :width "115px" :height "115px")
+					(fullhardwareinfo-widget))
+
+(defwindow apps :stacking "overlay" :focusable "false" :monitor 1
+		:geometry (geometry :x 326 :y 513 :width "264px" :height "350px")
+					(apps-widget))
+
+(defwindow timer :stacking "overlay" :focusable "false" :monitor 1
+		:geometry (geometry :x 603 :y 513 :width "223px" :height "237px")
+					(timer-widget))
+
+(defwindow user :stacking "overlay" :focusable "false" :monitor 1
+	    :geometry (geometry :x 838 :y 150 :width "244px" :height "350px")
+					(user-widget))
+
+(defwindow host :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 838 :y 513 :width "244px" :height "100px")
+					(host-widget))
+
+(defwindow musicplayer :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 838 :y 626 :width "244px" :height "124px")
+					(musicplayer-widget))
+
+(defwindow quote :stacking "overlay" :focusable "false" :monitor 1 
+		:geometry (geometry :x 602 :y 763 :width "870px" :height "100px")
+					(quote-widget))
+
+(defwindow weather :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1096 :y 150 :width "500px" :height "217px")
+					(weather-widget))
+
+(defwindow daytime :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1096 :y 380 :width "376px" :height "120px")
+					(daytime-widget))
+
+(defwindow todo :stacking "overlay" :focusable "false" :monitor 1
+	    :geometry (geometry :x 1096 :y 513 :width "376px" :height "237px")
+					(todo-widget))
+
+(defwindow colorpicker :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1485 :y 380 :width "111px" :height "111px")
+					(colorpicker-widget))
+
+(defwindow nightlight :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1485 :y 504 :width "111px" :height "111px")
+					(nightlight-widget))
+
+(defwindow lock :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1485 :y 628 :width "111px" :height "111px")
+					(lock-widget))
+					
+(defwindow power :stacking "overlay" :focusable "false" :monitor 1 
+	    :geometry (geometry :x 1485 :y 752 :width "111px" :height "111px")
+					(power-widget))
+
+

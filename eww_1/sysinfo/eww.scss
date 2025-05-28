@@ -1,0 +1,59 @@
+$bg-color: rgba(20, 20, 20, 0.7);
+$header-bg1: rgba(26, 26, 26, 1);
+$info-bg1: rgba(44, 44, 44, 1);
+$borderradius: 8px;
+$bold: 600;
+
+* {
+  all: unset;
+  font-family: "Source Han Sans";
+  opacity: 1;
+  font-size: 15px;
+}
+
+.bg {
+	background-color: rgba(50, 50, 50, 0.2);
+	border: 2px solid grey;
+	border-radius: $borderradius;
+}
+
+.backgroundbox {
+	background-color: $info-bg1;
+	padding: 0px 17px 10px 17px;
+	border-radius: $borderradius;
+}
+
+.headerbox, .headerboxmem {
+	background-color: $header-bg1;
+	border-radius: $borderradius;
+	font-weight: $bold;
+}
+
+.headerbox {
+	padding: 5px 67px;
+}
+
+.headerboxmem {
+	padding: 5px 65px;
+}
+
+.hardwarebox {
+	margin-top: 5px;
+}
+
+.hardwarelabel {
+	font-weight: $bold;
+}
+
+.load, .temp {
+	font-weight: 500;
+}
+
+.load {
+	color: #b3cefc;
+}
+
+.temp {
+	color: #fce4cf;
+}
+

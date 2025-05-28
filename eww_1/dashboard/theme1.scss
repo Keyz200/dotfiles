@@ -1,0 +1,594 @@
+$gradient: linear-gradient(to right, #af8767, rgba(1, 1, 1, 0.1));
+$bgcolor: #313131;
+$bgcolor2: #af8767;
+$hovercolor: #af8767;
+$onclickcolor: #202020;
+$bigtextcolor: #e8dfd0;
+$borderradius: 0px;
+$hoverborderradius: 0px;
+$color1: #ececec;
+$wordstyle: italic;
+
+* {
+	all: unset;
+	font-family: "JetBrainsMono";
+}
+
+.bg {
+	background-color: #1f1f1f;
+	border: 0px solid darken($color1, 80%);
+	border-radius: $borderradius;
+	border: 1px solid grey;
+}
+
+.win {
+	background: #2d2d2d;
+	border-radius: $borderradius;
+	border: 1px solid grey;
+}
+/* folders  ******************************************/
+.diskbox {
+	background: $bgcolor2;
+	border-radius: 0px;
+	margin: 0px;
+	padding: 2px 2px;
+}
+
+.diskprogress {
+	color: $color1;
+	font-weight: normal;
+	margin: 0px 0px 0px 26px;
+}
+
+.disksize {
+	color: $bigtextcolor;
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0px 0px 0px -20px;
+	font-style: $wordstyle;
+}
+
+.iconfolder1, .iconfolder2, .iconfolder3, .iconfolder4, .iconfolder5, .iconfolder6 {
+	font-size: 28px;
+	font-weight: normal;
+	margin: 0px 0px -3px 50px;
+	padding: 7px 7px 7px 7px;
+	
+	&:hover {
+	  background-color: $hovercolor;
+	  border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+.labelfolder1, .labelfolder2, .labelfolder3, .labelfolder4, .labelfolder5, .labelfolder6  {
+	font-size: 16px;
+	font-weight: 500;
+	padding: 3px 18px 3px 8px;
+	font-style: $wordstyle;
+	
+	&:hover {
+	  background-color: $hovercolor;
+	  border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+.iconfolder1, .labelfolder1 {
+	color: $color1;
+	margin-top: -5px;
+}
+
+.iconfolder2, .labelfolder2 {
+	color: $color1;
+}
+
+.iconfolder3, .labelfolder3 {
+	color: $color1;
+}
+
+.iconfolder4, .labelfolder4 {
+	color: $color1;
+}
+
+.iconfolder5, .labelfolder5 {
+	color: $color1;
+}
+
+.iconfolder6, .labelfolder6 {
+	color: $color1;
+}
+
+/* hardwareinfo ******************************* */
+.uptimebox {
+	background: $bgcolor2;
+	border-radius: 0px;
+	margin: 0px;
+	padding: 2px 2px;
+}
+
+.uptimeicon {
+	font-size: 44px;
+	margin: 15px 15px 15px 25px;
+	color: $color1;
+}
+
+.hoursminsbox {
+	margin-top: 9px;
+	font-style: $wordstyle;
+}
+
+.uptimehourslabel, .uptimeminslabel {
+	font-weight: bold;
+	color: $bigtextcolor;
+	margin: -5px 0px 0px 0px;
+}
+.uptimehourslabel {
+	font-size: 22px;
+	margin-top: 3px;
+}
+
+.uptimeminslabel {
+	font-size: 18px;
+}
+
+.cpuicon {
+	font-size: 22px;
+}
+
+.cpuicon {
+	color: $color1;
+}
+
+.gpuicon {
+	font-size: 24px;
+	color: $color1;
+	padding-left: 1px;
+}
+
+.memicon {
+	font-size: 22px;
+	color: $color1;
+}
+
+.cpubox, .gpubox, .membox, scale trough {
+  all: unset;
+  background: $bgcolor2;
+  border-radius: $borderradius;
+  min-height: 14px;
+  min-width: 150px;
+}
+
+.cpubox, .gpubox, .membox, scale trough highlight {
+  all: unset;
+  border-radius: $borderradius;
+}
+
+.cpubox scale trough highlight {
+  background-color: $color1;
+}
+
+.gpubox scale trough highlight {
+  background-color: $color1;
+}
+
+.membox scale trough highlight {
+  background-color: $color1;
+}
+
+.cpubox, .gpubox, .membox, scale slider {
+  all: unset;
+  background: none;
+  min-width: 0;
+  min-height: 0;
+  border-radius: $borderradius;
+}
+
+/* switch button  **************************** */
+.switchicon {
+	font-size: 54px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+}
+
+/* fullhardwareinfo button  **************************** */
+.fullhardwareinfoicon {
+	font-size: 54px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+}
+
+/* apps ********************************** */
+.appbox {
+	margin: 3px 10px 0px 10px;
+}
+
+.appsteam, .apprandom, .apprl {
+	margin-top: 7px;
+}
+
+.appx, .appy, .appz {
+	margin-bottom: 10px;
+}
+
+.appsteam, .apprandom, .apprl, .appdiscord, .appstremio, .appgmail, .appzen, .appspotify, .appyoutube, .appslurp, .apprefresh, .appexit {
+min-height: 64px;
+min-width: 64px;
+	/*margin: 8px 8px 0px 8px; */
+	font-size: 54px;
+	padding: 8px;
+	color: $bigtextcolor;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+.appgmail {
+	font-size: 60px;
+}
+
+.appzen {
+	font-size: 62px;
+}
+
+/* timer ****************************** */
+.timericonbox {
+	margin: 28px 0px 0px 0px;
+	color: $color1;
+}
+
+.timericon {
+	font-size: 72px;
+}
+
+.timerlabel {
+	font-size: 24px;
+	font-weight: bold;
+	color: $bigtextcolor;
+	font-style: $wordstyle;
+}
+
+.timerbutton {
+	font-size: 24px;
+	padding: 10px 30px 10px 30px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $hoverborderradius;
+	}
+}
+
+/* quote ******************************* */
+.quotebox {
+	font-size: 17px;
+	font-weight: bold;
+	margin: 35px 50px 0px 50px;
+	color: $color1;
+	font-style: $wordstyle;
+}
+
+/* user ********************************* */
+.userimagebox {
+	background: $gradient;
+	margin: 40px;
+	border-radius: 50%;
+}
+
+.userimage {
+	min-height: 160px;
+	min-width: 160px;
+	background-size: cover;
+	border-radius: 50%;
+	margin: 2px;
+}
+
+.distro {
+	margin-top: -40px;
+	font-size: 24px;
+	font-weight: 500;
+	color: $color1;
+}
+
+.username {
+	font-size: 20px;
+	font-weight: 500;
+	color: $color1;
+	font-style: $wordstyle;
+}
+
+/* hostname ****************************** */
+.hostname {
+	font-size: 24px;
+	font-style: italic;
+	font-weight: 500;
+	margin: 32px;
+	color: $color1;
+}
+
+/* musicplayer *************************** */
+.songname {
+	font-size: 16px;
+	font-weight: 500;
+	margin-top: 24px;
+	margin-bottom: 6px;
+	color: $bigtextcolor;
+	font-style: $wordstyle;
+}
+
+.mediabutton {
+	font-size: 20px;
+	padding: 8px 20px 8px 20px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $hoverborderradius;
+	}
+}
+
+.musicprogress {
+	margin: 4px 20px 0px 20px;
+}
+
+.musicprogress scale trough {
+	all: unset;
+	background: #1f1f1f;
+	border-radius: $borderradius;
+	min-height: 4px;
+	min-width: 150px;
+}
+
+.musicprogress scale trough highlight {
+	all: unset;
+	background-color: $bgcolor2;
+	border-radius: $borderradius;
+}
+
+.musicprogress scale slider {
+  all: unset;
+  background: none;
+}
+
+/* weather ********************************* */
+.weatherbox {
+	background: $bgcolor2;
+	border-radius: $borderradius;
+	padding: 16px 0px 16px 40px;
+}
+
+.daynighticon {
+	font-size: 80px;
+	color: $color1;
+}
+
+.temp {
+	font-size: 50px;
+	font-weight: bold;
+	color: $bigtextcolor;
+	font-style: $wordstyle;
+}
+
+.forecasthorizontalbox {
+	font-style: $wordstyle;
+}
+
+.dayandmonthbox {
+	background: $bgcolor2;
+	border-radius: $borderradius;
+	font-weight: 500;
+	padding: 10px;
+	font-size: 20px;
+	margin-top: 12px;
+	color: $color1;
+}
+
+.forecasttime {
+	font-size: 18px;
+	font-weight: 500;
+	color: $bigtextcolor;
+	margin-top: 28px;
+}
+
+.forecast {
+	font-size: 15px;
+	font-weight: 500;
+	color: $color1;
+}
+
+.dayswitchbox {
+	font-size: 24px;
+	margin-top: 21px;
+}
+
+.dayswitch {
+	color: $color1;
+	padding: 20px;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $hoverborderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+/* daytime ************************** */
+.timehour {
+	font-size: 46px;
+	font-weight: bold;
+	color: $color1;
+	margin: 0px 0px 20px 30px;
+	font-style: $wordstyle;
+}
+
+.timeminute {
+	font-size: 46px;
+	font-weight: bold;
+	color: $color1;
+	margin: 20px 0px 0px 10px;
+	font-style: $wordstyle;
+}
+
+.dayoftheweekbox {
+	font-style: $wordstyle;
+}
+
+.timeampm {
+	font-size: 20px;
+	font-weight: 500;
+	color: $color1;
+}
+
+.day {
+	font-size: 30px;
+	font-weight: 500;
+	color: $color1;
+}
+
+/* todo ******************************** */
+.todobox {
+	background: $bgcolor2;
+	border-radius: $borderradius;
+	padding: 4px 0px 4px 0px;
+	margin: 0px 0px 16px 0px;
+	font-style: $wordstyle;
+}
+
+.todoicon {
+	font-size: 40px;
+	color: $color1;
+	padding: 1px 10px 0px 10px;
+	margin: 2px 0px 1px 38px;
+
+	&:hover {
+		background-color: $bgcolor;
+		border-radius: $hoverborderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+.todobutton {
+	font-size: 30px;
+	font-weight: bold;
+	color: $color1;
+	padding: 1px 40px 1px 40px;
+	margin: 2px 0px 1px 10px;
+	
+	&:hover {
+		background-color: $bgcolor;
+		border-radius: $hoverborderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+.todonumber {
+	font-size: 22px;
+	font-weight: bold;
+	color: $color1;
+	margin: 0px 0px 0px 22px;
+}
+
+.todolist {
+	font-size: 16px;
+	font-weight:500;
+	color: $color1;
+}
+
+/* colorpicker ************************** */
+.colorpickericon {
+	font-size: 50px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+/* nightlight ****************************** */
+.nightlighticon {
+	font-size: 50px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+/* lock ****************************** */
+.lockicon {
+	font-size: 50px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}
+
+/* power ********************************** */
+.powericon {
+	font-size: 50px;
+	color: $color1;
+
+	&:hover {
+		background-color: $hovercolor;
+		border-radius: $borderradius;
+	}
+
+	&:active {
+	  background-color: $onclickcolor;
+	  border-radius: $borderradius;
+	}
+}

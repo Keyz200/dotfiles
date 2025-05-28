@@ -1,0 +1,46 @@
+window {
+	background: linear-gradient(to right, #000000, #181818);
+}
+
+#input {
+	margin: 10px;
+	background-color: #1f1f1f;
+	border: 1px solid #040404;
+}
+
+#input:focus {
+    
+}
+
+#inner-box {
+	margin: 5px;
+	background-color: transparent;
+}
+
+#outer-box {
+	background-color: transparent;
+	opacity: 1;
+}
+
+#scroll {
+	margin: 5px;
+	border: 0px solid #000000;
+	padding-bottom: 5px;
+	background-color: transparent;
+}
+
+#text {
+	margin: 5px;
+	background-color: transparent;
+} 
+
+#entry:selected {
+    background-color: #b75301;
+    border-radius: 8px;
+} 
+
+#text:selected {
+	background-color: transparent;
+	
+	padding: 0px 10px 0px 10px;
+} 

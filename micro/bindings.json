@@ -1,0 +1,9 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "Alt-c": "lua:comment.comment",
+    "CtrlUnderscore": "lua:comment.comment",
+    "F1": "command:cheat",
+    "Insert": "",
+    "F2": "SelectToStartOfTextToggle",
+    "F3": "SelectToEndOfLine"
+}

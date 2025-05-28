@@ -1,0 +1,82 @@
+$gradient1: radial-gradient(rgba(33, 33, 38, 1), rgba(25, 28, 31, 1));
+$gradient2: radial-gradient(rgba(51, 52, 54, 0.65), rgba(33, 35, 38, 1));
+$backgroundcolor: rgba(200, 200, 200, 0.65);
+$backgroundcolor2: rgba(55, 55, 55, 0.65);
+$color1: #e8dfd0;
+$borderradius: 0px;
+* {
+	all: unset;
+	font-family: "JetBrainsMono";
+	font-size: 14px;
+}
+
+.eventbox {
+	&:hover {
+		background: $backgroundcolor;
+		border-radius: 0px;
+		border: 1px solid grey;
+	}
+}
+
+.win {
+	background: #af8767;
+	border-radius: $borderradius;
+	padding: 10px 0px 10px 0px;
+	margin: 1px;
+	border: 1px solid grey;
+}
+
+.appiconbox {
+	margin-left: 13px;
+}
+
+.appicon {
+	background-color: transparent;
+	background-size: cover;
+	min-height: 50px;
+	min-width: 50px;
+	border-radius: 50%;
+}
+
+.infobox {
+	margin-top: 2px;
+}
+
+.sender {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.content {
+	font-weight: 500;
+}
+
+.notif-eventbox {
+  background-color: #232323;
+  border-radius: 0px;
+  margin: 10px;
+  border: 1px solid grey; 
+}
+
+.notificationicon {
+	margin: 0px 0px 0px 16px;
+	font-size: 30px;
+}
+.notificationlabel {
+	margin: 10px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.notif-scroll {
+	background: #2d2d2d;
+	border-radius: 0px;
+    padding: 9px;
+    margin: 1px;
+}
+
+.notif-container {
+
+  border-radius: 16px;
+}
+

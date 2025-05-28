@@ -1,0 +1,65 @@
+* {
+	all: unset
+}
+
+.sysinfov2box {
+	background-color: transparent;
+}
+
+.outerbox1, .outerbox2, .outerbox3, .outerbox4 {
+	background: radial-gradient(#344E67, #000000);
+	border: 1px solid #344E67;
+	border-radius: 0px;
+}
+
+.headerbox1, .headerbox2, .headerbox3, .headerbox4 {
+	margin: 10px;
+	font-size: 17px;
+	font-weight: 600;
+	color: #ececec;
+	border-radius: 0px;
+}
+
+.innerbox1, .innerbox2, .innerbox3, .innerbox4 {
+	background: linear-gradient(to top, #344E67, #000000);
+	color: #ececec;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 10px 20px 10px 20px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.hardwareboxdisk1 {
+	margin-top: 12px;
+}
+
+.hardwarelabel {
+	font-weight: 500;
+}
+
+.size {
+	color: #eefced;
+}
+
+.load, .temp {
+	font-weight: 500;
+}
+
+.load {
+	color: #b3cefc;
+}
+
+.temp {
+	color: #fccfcf;
+}
+
+.hover {
+	background-color: #1f1f1f;
+	border-radius: 0px;
+}
+
+.hovertext {
+	color: #ececec;
+	margin-top: -12px;
+	font-size: 56px;
+}

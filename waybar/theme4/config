@@ -1,0 +1,214 @@
+{
+	"reload_style_on_change": true,
+	"layer": "top",
+    "position": "left",
+    "mod": "dock",
+    "spacing": 0,
+    "margin-left": -73,
+    "margin-right": -6, //floating dock
+    "margin-top": 13,
+    "margin-bottom": 13,
+    "width": 20,
+    "height": 487,
+    "exclusive": false,
+    "passthrough": false,
+	"modules-left": [
+		"hyprland/workspaces",
+	],
+	"modules-center": [
+	],
+	"modules-right": [
+		"tray",
+	],
+
+	"image#slides": {
+		"exec": "$HOME/.config/scripts/waybar/imageslideshow.sh",
+		"size": 78,
+		"interval": 60,
+		"on-click": ""
+	},
+
+	"hyprland/workspaces": {
+		"active-only": false,
+		"all-outputs": true,
+		"show-special": false,
+		"sort-by": "number",
+		"disable-scroll": true,
+		"disable-scroll-wraparound": true,
+		"enable-bar-scroll": false,
+		"format": "{icon}",
+		"format-icons": {
+			"1": "さ",
+			"2": "く",
+			"3": "ら",
+			"4": "ん",
+			"5": "ぼ",
+			"6": "の",
+			"7": "木",
+			"8": "が",
+			"9": "あ"
+		},
+	},
+
+	"pulseaudio": {
+	    "format": "{icon}",
+	    "format-bluetooth": "{icon}",
+	    "format-muted": " ",
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	    "on-click-right": "ghostty -e ncpamixer",
+	    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+	    "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-",
+	    "scroll-step": 5,
+	    "format-icons": {
+	        "headphone": "",
+	        "hands-free": "",
+	        "headset": "",
+	        "phone": "",
+	        "portable": "",
+	        "car": "",
+	        "default": ["", "", ""]
+	    }
+	},
+
+	"pulseaudio#microphone": {
+	    "format": "{format_source}",
+	    "format-source": " {volume}%",
+	    "format-source-muted": "",
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+	    "on-click-right": "ghostty -e ncpamixer",
+	    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+",
+	    "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%-",
+	    "scroll-step": 5
+	},
+
+	"custom/musicname": {
+		"format": "♫ {}", 
+		"exec": "$HOME/.config/scripts/waybar/musicname.sh | sed -E 's|<||' | sed -E 's|>||'",
+		"interval": 2,
+		"on-click": "$HOME/.config/scripts/eww/musicplayer/togglemusicplayer.sh hide",
+		"tooltip": false
+	},
+
+	"custom/cputext": {
+    	"format": "CPU:",
+    	"tooltip": false,
+    	"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+    },
+    
+	"cpu": {
+		"interval": 2,
+		"format": "{usage}%",
+		"max-lenght": 10,
+		"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+	},
+
+	"custom/temperature": {
+		"interval": 2,
+		"exec": "~/.config/hypr/scripts/sysinfo/cpuUsage.sh temp",
+		"format": "{}°C",
+		"tooltip": false,
+		"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+	},
+
+	"image#dashboard": {
+		"exec": "echo \"$HOME/images/imagemagick/converter/saved/pfpWidgetsProject00000modified.png\"",
+		"on-click": "$HOME/.config/scripts/eww/widgethandler.sh dashboard",
+		"size": 38,
+		"interval": 5,
+	},
+
+    "custom/gputext": {
+    	"format": "GPU:",
+    	"tooltip": false,
+		"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+    },
+
+    "custom/gpuusage": {
+    	"format": "{}%",
+    	"interval": 2,
+    	"exec": "$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh load",
+    	"tooltip": false,
+    	"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+    },
+
+    "custom/gputemp": {
+    	"format": "{}°C",
+    	"interval": 2,
+    	"exec": "$HOME/.config/scripts/hardwareinfo/nvidiaUsage.sh temp",
+    	"tooltip": false,
+    	"on-click": "$HOME/.config/scripts/eww/widgethandler.sh sysinfo"
+    },
+
+	"network": {
+		"interval": 2,
+		"format-wifi": "{icon} {signalStrength}% {essid}",
+		"format-ethernet": "⇌",
+		"format-disconneced": "⨯",
+		"tooltip-format": "{gwaddr}\n↓ {bandwidthDownBits} ↑ {bandwidthUpBits}"
+	},
+
+    "custom/ping": {
+    	"format": "{}ms",
+    	"interval": 2,
+    	"exec": "$HOME/.config/scripts/waybar/ping.sh",
+    	"on-click": "ghostty --class=com.ping.report -e ping google.com",
+    	"tooltip": false,
+    },
+
+	"tray": {
+		"icon-size": 18,
+		"spacing": 15,
+		"reverse-direction": true
+	},
+
+    "custom/weather": {
+    	"format": "{}",
+        "exec": "$HOME/.config/scripts/waybar/weather.sh temperature",
+        "interval": 180,
+        "on-click": "ghostty --class=com.weather.report -e $HOME/.config/scripts/waybar/weather.sh forecast",
+    	"tooltip": false
+    },
+
+	"clock": {
+        "format": "{:%H:%M}",
+      	"format-alt": "{:%a, %B %d (%R)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ffffff'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "custom/notificationcenter": {
+		"format": "󰂚",
+		"on-click": "eww -c $HOME/.config/eww_1/notifications/ open notif-center",
+		"tooltip": false,
+	},
+
+    "custom/power": {
+    	"format": "󰐥",
+    	"on-click": "ghostty --class=com.power.button -e doas halt &",
+    	"on-click-right": "ghostty --class=com.power.button -e doas reboot &",
+    	"tooltip": false,
+    },
+
+	"hyprland/window": {
+		"format": "{title}"
+	},
+}

@@ -1,0 +1,50 @@
+window {
+	margin: 0px;
+	padding: 0px;
+	background-color: transparent;
+}
+
+#input {
+	margin: 5px;
+	border: 2px solid #2d2d2d;
+	border-radius: 10px;
+	background-color: #424242;
+}
+
+#input:focus {
+    box-shadow: inset 0 0 0 1px #2d2d2d;
+}
+
+#inner-box {
+	margin: 5px;
+	background-color: #424242;
+}
+
+#outer-box {
+	background-color: #333333;
+	opacity: 0.8;
+}
+
+#scroll {
+	margin: 5px;
+	border: 2px solid #2d2d2d;
+	border-radius: 10px;
+	padding-bottom: 5px;
+	background-color: #424242;
+}
+
+#text {
+	margin: 5px;
+	background-color: #424242;
+} 
+
+#entry:selected {
+    background-color: #5e5e5e;
+    border-radius: 8px;
+    width: 100%;
+} 
+
+#text:selected {
+	background-color: #5e5e5e;
+	padding: 0px 10px 0px 10px;
+} 

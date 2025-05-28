@@ -1,0 +1,160 @@
+(defvar specific_image "/home/keyz/images/pictures/pfp (Widgets Project)_00000.png")
+
+(defpoll user :interval "99999s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config2.jsonc`)
+
+(defpoll host :interval "99999s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config3.jsonc`)
+
+(defpoll uptime :interval "60s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config4.jsonc`)
+
+(defpoll distro :interval "99999s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config5.jsonc`)
+
+(defpoll kernel :interval "99999s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config6.jsonc`)
+
+(defpoll shell :interval "99999s"
+	:initial ""
+	`echo fish`)
+
+(defpoll cpu :interval "99999s"
+  :initial ""
+  `fastfetch -c ~/.config/fastfetch/config8.jsonc | sed -E 's/.*(i[0-9]-[A-Za-z0-9]+).*/\\1/'`)
+
+(defpoll gpu :interval "99999s"
+	:initial ""
+	`fastfetch -c ~/.config/fastfetch/config9.jsonc | sed -E 's/^.*?(RTX)/ \\1/'`)
+
+(defpoll memory :interval "99999s"
+	:initial ""
+	`echo 32GB 3200Mhz CL16`)
+
+(defwidget fetch-widget []
+    (box :class "fetch-widget"
+         :orientation "h"
+         :space-evenly false
+         :width 300
+         :height 240
+      (box :class "image-container"
+           :halign "center"
+           :valign "center"
+           :width 241
+           :height 241
+           :style "background-image: url('${specific_image}');")
+      (box :class "fetch-container"
+           :orientation "v"
+           :halign "start"
+           :valign "start"
+           :height 210
+           :xalign 0
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "User: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value1"
+                 :text "${user}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "Host: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value2"
+                 :text "${host}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "Uptime: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value3"
+                 :text "${uptime}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "OS: "
+                 :width 70
+                 :xalign 0)
+          (label :class "value4"
+                 :text "${distro}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "Term: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value5"
+                 :text "ghostty"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "Shell: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value6"
+                 :text "${shell}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "CPU: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value7"
+                 :text "${cpu}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "GPU: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value8"
+                 :text "${gpu}"
+                 :xalign 0))
+        (box :class "line"
+             :orientation "h"
+             :space-evenly false
+          (label :class "key"
+                 :text "RAM: "
+                 :width 80
+                 :xalign 0)
+          (label :class "value9"
+                 :text "${memory}"
+                 :xalign 0)))))
+			 
+(defwindow fetch
+  :monitor 1
+  :geometry (geometry :x "0"
+                      :y 300
+                      :width "300px"
+                      :height "240px"
+                      :anchor "center top")
+  :stacking "bg"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  :class "fetch-window"
+  (fetch-widget))

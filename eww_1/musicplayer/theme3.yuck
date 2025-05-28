@@ -1,0 +1,58 @@
+(defvar image "/home/keyz/images/imagemagick/converter/outputs/output11.png")
+
+(deflisten imagepicker :initial ""
+	`tail -Fq /tmp/eww/musicplayer/.mediaplayerimage`)
+  
+(defpoll prev_song :interval "1s"
+  :initial ""
+  "$HOME/.config/scripts/eww/musicplayer/adjacenttracks.sh prev")
+
+(defpoll next_song :interval "1s"
+  :initial ""
+  "$HOME/.config/scripts/eww/musicplayer/adjacenttracks.sh next")
+
+(defpoll nowplaying :interval "1s"
+  :initial "No song playing"
+  `$HOME/.config/scripts/eww/musicplayer/nowplaying.sh`)
+
+(defpoll status :interval "1s"
+  :initial ""
+  `$HOME/.config/scripts/eww/musicplayer/status.sh`)
+
+(deflisten playpause :initial ""
+	`tail -Fq /tmp/eww/musicplayer/.playpause`)
+
+(defwidget musicplayer-widget []
+  (box :class "win" :orientation "v" :space-evenly false :vexpand false :hexpand false
+    (box :class "image" :halign "center" :style "background-image: url('${image}');")
+    (box :class "infobox" :orientation "v" :space-evenly false :halign "center" :valign "center" :spacing 1
+      (label :class "adjacentsongs"
+             :limit-width 44
+             :text "${prev_song}")
+      (label :class "nowplaying"
+             :limit-width 36
+             :text "${nowplaying}")
+      (label :class "adjacentsongs"
+             :limit-width 44
+             :text "${next_song}")
+      (label :class "status"
+             :text "${status}"))
+    (box :class "buttons" :orientation "h" :space-evenly true :halign "center"
+      (button :class "buttonshuffle" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh shuffle" "⇄")
+      (button :class "button" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh previous" "")
+      (button :class "button" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh playpause" "${playpause}")
+      (button :class "button" :onclick "$HOME/.config/scripts/eww/musicplayer/buttons.sh next" "")
+      (button :class "buttonadd" :onclick "$HOME/.config/scripts/eww/musicplayer/add.sh" "+"))))
+
+(defwindow musicplayer [screen]
+  :monitor screen
+  :geometry (geometry :x 1648
+                      :y 567
+                      :width "1px"
+                      :height "1px"
+                      :anchor "top left")
+  :stacking "overlay"
+  :windowtype "normal"
+  :wm-ignore false
+  :exclusive false
+  (musicplayer-widget))
